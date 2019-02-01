@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ionic Capacitor Testbed</string>
+    <string name="title_activity_main">Ionic Capacitor Testbed</string>
+    <string name="package_name">com.sebastienguillon.ionic.capacitor.testbed</string>
+    <string name="fileprovider_authority">com.sebastienguillon.ionic.capacitor.testbed.fileprovider</string>
+    <string name="custom_url_scheme">com.sebastienguillon.ionic.capacitor.testbed</string>
+</resources>
