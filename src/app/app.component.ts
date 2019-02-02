@@ -14,25 +14,29 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  initializeApp() {
+  initializeApp(): void {
     this.platform.ready().then(() => {
-      Plugins.StatusBar.setStyle({style: StatusBarStyle.Dark});
-      Plugins.SplashScreen.hide();
       console.log('App is ready');
+      if (this.platform.is('mobile')) {
+        Plugins.StatusBar.setStyle({style: StatusBarStyle.Dark});
+        Plugins.SplashScreen.hide();
+      }
       this.listenToAppStateChange();
       this.getDeviceInfo();
       this.helloPluginTest();
     });
   }
 
-  private listenToAppStateChange() {
-    Plugins.App.addListener('appStateChange', (appState: AppState) => {
-      if (appState.isActive) {
-        console.log('App has become active');
-      } else {
-        console.log('App has become inactive');
-      }
-    });
+  private listenToAppStateChange(): void {
+    if (this.platform.is('mobile')) {
+      Plugins.App.addListener('appStateChange', (appState: AppState) => {
+        if (appState.isActive) {
+          console.log('App has become active');
+        } else {
+          console.log('App has become inactive');
+        }
+      });
+    }
   }
 
   private helloPluginTest(): void {

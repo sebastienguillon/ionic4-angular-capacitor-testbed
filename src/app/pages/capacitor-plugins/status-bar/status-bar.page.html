@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/capacitor"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Status Bar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-button (click)="hideStatusBar()">Hide StatusBar</ion-button>
+  <ion-button (click)="showStatusBar()">Show StatusBar</ion-button>
+
+  <ion-button (click)="setSatusBarStyle(statusBarStyles.dark)">Set Dark style</ion-button>
+  <ion-button (click)="setSatusBarStyle(statusBarStyles.light)">Set Light style</ion-button>
+
+  <ion-button (click)="setSatusBarColor('#ff0000')">Make StatusBar Red</ion-button>
+  <ion-button (click)="setSatusBarColor('#00ff00')">Make StatusBar Green</ion-button>
+  <ion-button (click)="setSatusBarColor('#0000ff')">Make StatusBar Blue</ion-button>
+
+</ion-content>

@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>Ionic Capacitor Testbed</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-searchbar padding debounce="500" (ionInput)="findPages($event)" animated></ion-searchbar>
+  <app-page-list [pages]="searchResults" *ngIf="displayResults"></app-page-list>
 </ion-content>

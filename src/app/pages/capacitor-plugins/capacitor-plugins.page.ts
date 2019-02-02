@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Plugins, StatusBarStyle } from '@capacitor/core';
+import { PagesService } from '../../services/pages.service';
 
 @Component({
   selector: 'app-capacitor-plugins',
@@ -7,33 +7,15 @@ import { Plugins, StatusBarStyle } from '@capacitor/core';
   styleUrls: ['./capacitor-plugins.page.scss'],
 })
 export class CapacitorPluginsPage implements OnInit {
+  pages: PageLink[] = [];
 
-  statusBarStyles = {
-    dark: StatusBarStyle.Dark,
-    light: StatusBarStyle.Light,
-  };
-
-  constructor() { }
+  constructor(
+    private pagesService: PagesService,
+  ) {
+    this.pages = this.pagesService.capacitorPages;
+  }
 
   ngOnInit() {
-    console.log('StatusBarStyle.Dark:', StatusBarStyle.Dark);
-    console.log('StatusBarStyle.Light:', StatusBarStyle.Light);
-  }
-
-  hideStatusBar(): void {
-    Plugins.StatusBar.hide();
-  }
-
-  showStatusBar(): void {
-    Plugins.StatusBar.show();
-  }
-
-  setSatusBarStyle(style: StatusBarStyle): void {
-    Plugins.StatusBar.setStyle({style: style});
-  }
-
-  setSatusBarColor(color: string): void {
-    Plugins.StatusBar.setBackgroundColor({color});
   }
 
 }

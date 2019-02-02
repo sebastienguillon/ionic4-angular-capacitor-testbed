@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/capacitor"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Motion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-button (click)="startAccelerationListening()">Start listening to acceleration</ion-button>
+  <ion-button (click)="stopAccelerationListening()">Stop listening to acceleration</ion-button>
+  <ion-button (click)="startOrientationListening()">Start monitoring orientation</ion-button>
+  <ion-button (click)="stopOrientationListening()">Stop monitoring orientation</ion-button>
+</ion-content>

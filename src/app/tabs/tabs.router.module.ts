@@ -22,6 +22,14 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../pages/capacitor-plugins/capacitor-plugins.module#CapacitorPluginsPageModule'
+          },
+          {
+            path: 'status-bar',
+            loadChildren: '../pages/capacitor-plugins/status-bar/status-bar.module#StatusBarPageModule'
+          },
+          {
+            path: 'motion',
+            loadChildren: '../pages/capacitor-plugins/motion/motion.module#MotionPageModule'
           }
         ]
       },
