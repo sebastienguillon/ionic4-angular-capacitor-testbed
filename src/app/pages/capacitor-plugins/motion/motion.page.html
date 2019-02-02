@@ -10,6 +10,14 @@
 <ion-content padding>
   <ion-button (click)="startAccelerationListening()">Start listening to acceleration</ion-button>
   <ion-button (click)="stopAccelerationListening()">Stop listening to acceleration</ion-button>
+
+  <ng-container *ngIf="lastAcceleration">
+    <h2>lastAcceleration</h2>
+    <div>x: {{ lastAcceleration.x }}</div>
+    <div>y: {{ lastAcceleration.y }}</div>
+    <div>z: {{ lastAcceleration.z }}</div>
+  </ng-container>
+
   <ion-button (click)="startOrientationListening()">Start monitoring orientation</ion-button>
   <ion-button (click)="stopOrientationListening()">Stop monitoring orientation</ion-button>
 </ion-content>

@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
 
+const capacitorCategory: PageCategory = {
+  category: 'capacitor',
+  color: 'primary',
+};
+const cordovaCategory: PageCategory = {
+  category: 'cordova',
+  color: 'danger',
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,10 +17,12 @@ export class PagesService {
     {
       path: '/tabs/capacitor/status-bar',
       text: 'Status Bar',
+      pageCategory: capacitorCategory,
     },
     {
       path: '/tabs/capacitor/motion',
       text: 'Motion',
+      pageCategory: capacitorCategory,
     },
   ];
 
@@ -19,6 +30,7 @@ export class PagesService {
     {
       path: '/tabs/cordova/app-preferences',
       text: 'App Preferences',
+      pageCategory: cordovaCategory,
     },
   ];
 

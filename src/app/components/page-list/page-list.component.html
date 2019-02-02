@@ -1,5 +1,6 @@
 <ion-list>
   <ion-item *ngFor="let page of pages" [routerLink]="page.path">
     {{ page.text }}
+    <ion-badge *ngIf="page.pageCategory && displayBadge" [color]="page.pageCategory.color" slot="end">{{ page.pageCategory.category }}</ion-badge>
   </ion-item>
 </ion-list>

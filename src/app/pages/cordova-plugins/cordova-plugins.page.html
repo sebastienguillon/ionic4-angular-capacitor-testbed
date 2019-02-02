@@ -1,18 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <!-- <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/demos"></ion-back-button>
-    </ion-buttons> -->
     <ion-title>Cordova plugins</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-button (click)="getPreferences(preferenceKey)">Get</ion-button>
-  <ion-button (click)="setPreferences(preferenceKey, 'Orange')">Set Orange</ion-button>
-  <ion-button (click)="setPreferences(preferenceKey, 'Violet')">Set Violet</ion-button>
-  <ion-button (click)="setPreferences(preferenceKey, 'Fuchsia')">Set Fuchsia</ion-button>
-
-  <h2>Favorite color</h2>
-  <p>{{ favoriteColor }}</p>
+<ion-content>
+  <app-page-list [pages]="pages" [displayBadge]="false"></app-page-list>
 </ion-content>

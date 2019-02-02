@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Plugins, MotionEventResult } from '@capacitor/core';
 
 @Component({
@@ -7,19 +7,38 @@ import { Plugins, MotionEventResult } from '@capacitor/core';
   styleUrls: ['./motion.page.scss'],
 })
 export class MotionPage implements OnInit {
+  lastAcceleration: DeviceAcceleration;
   motionEvents: MotionEventResult[] = [];
 
-  constructor() { }
+  constructor(
+    private cdRef: ChangeDetectorRef
+  ) {
+    this.cdRef.detach();
+    setInterval(() => {
+      if (this.cdRef) {
+        this.cdRef.detectChanges();
+      }
+    }, 200);
+  }
 
   ngOnInit() {
   }
 
   startAccelerationListening(): void {
-    Plugins.Motion.addListener('accel', (motionEvent: MotionEventResult) => {
-      console.log(motionEvent);
-      this.motionEvents.push(motionEvent);
-    });
+    Plugins.Motion.addListener('accel', this.motionListener.bind(this));
   }
 
-  // removeListener
+  stopAccelerationListening(): void {
+    Plugins.Motion.removeListener('accel', this.motionListener);
+  }
+
+  private motionListener(motionEvent: MotionEventResult): void {
+    this.lastAcceleration = motionEvent.acceleration;
+    this.motionEvents.push(motionEvent);
+    console.log('count:', this.motionEvents.length);
+  }
+
+  ionViewWillLeave() {
+    this.stopAccelerationListening();
+  }
 }

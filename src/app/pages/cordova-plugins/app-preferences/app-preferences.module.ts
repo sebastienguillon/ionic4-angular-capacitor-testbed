@@ -5,24 +5,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ComponentsModule } from '../../components/components.module';
-import { CordovaPluginsPage } from './cordova-plugins.page';
+import { AppPreferencesPage } from './app-preferences.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CordovaPluginsPage
+    component: AppPreferencesPage
   }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    ComponentsModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CordovaPluginsPage]
+  declarations: [AppPreferencesPage]
 })
-export class CordovaPluginsPageModule {}
+export class AppPreferencesPageModule {}

@@ -39,6 +39,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../pages/cordova-plugins/cordova-plugins.module#CordovaPluginsPageModule'
+          },
+          {
+            path: 'app-preferences',
+            loadChildren: '../pages/cordova-plugins/app-preferences/app-preferences.module#AppPreferencesPageModule'
           }
         ]
       },
