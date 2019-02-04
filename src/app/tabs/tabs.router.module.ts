@@ -30,6 +30,10 @@ const routes: Routes = [
           {
             path: 'motion',
             loadChildren: '../pages/capacitor-plugins/motion/motion.module#MotionPageModule'
+          },
+          {
+            path: 'modals',
+            loadChildren: '../pages/capacitor-plugins/modals/modals.module#ModalsPageModule'
           }
         ]
       },

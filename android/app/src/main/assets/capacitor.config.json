@@ -1,14 +1,11 @@
 {
-  "appId": "com.sebastienguillon.ionic.capacitor.testbed",
-  "appName": "Ionic Capacitor Testbed",
+  "appId": "com.sebastienguillon.ionic4.capacitor.testbed",
+  "appName": "Ionic 4 Capacitor Testbed",
   "bundledWebRuntime": false,
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 10000
     }
-  },
-  "server": {
-    "url": "http://localhost:8100"
   }
 }

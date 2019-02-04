@@ -38,6 +38,14 @@ export class MotionPage implements OnInit {
     console.log('count:', this.motionEvents.length);
   }
 
+  startOrientationListening(): void {
+
+  }
+
+  stopOrientationListening(): void {
+
+  }
+
   ionViewWillLeave() {
     this.stopAccelerationListening();
   }

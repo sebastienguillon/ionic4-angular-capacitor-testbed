@@ -6,5 +6,5 @@
 
 <ion-content>
   <ion-searchbar padding debounce="500" (ionInput)="findPages($event)" animated></ion-searchbar>
-  <app-page-list [pages]="searchResults" *ngIf="displayResults"></app-page-list>
+  <app-page-list [pages]="searchResults" [displayBadge]="true" *ngIf="displayResults"></app-page-list>
 </ion-content>

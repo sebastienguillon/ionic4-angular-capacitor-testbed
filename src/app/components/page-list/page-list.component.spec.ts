@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+// import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PageListComponent } from './page-list.component';
+
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
 describe('PageListComponent', () => {
   let component: PageListComponent;
@@ -8,7 +11,12 @@ describe('PageListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageListComponent ]
+      declarations: [ PageListComponent ],
+      imports: [
+        IonicModule,
+        RouterModule
+      ]
+      // schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
   }));

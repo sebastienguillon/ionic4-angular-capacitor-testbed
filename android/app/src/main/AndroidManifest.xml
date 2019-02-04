@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sebastienguillon.ionic.capacitor.testbed">
+    package="com.sebastienguillon.ionic4.capacitor.testbed">
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,7 @@
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
-            android:name="com.sebastienguillon.ionic.capacitor.testbed.MainActivity"
+            android:name="com.sebastienguillon.ionic4.capacitor.testbed.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBarLaunch">
 

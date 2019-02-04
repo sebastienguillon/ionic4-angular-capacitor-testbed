@@ -1,8 +1,8 @@
 {
-  "name": "ionic-capacitor-testbed",
+  "name": "ionic4-capacitor-testbed",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Sébastien Guillon",
+  "homepage": "http://sebastienguillon.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,8 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:android": "ionic build && ionic capacitor sync android && ionic capacitor open android",
-    "build:ios": "ionic build && ionic capacitor sync ios && ionic capacitor open ios"
+    "build:android": "ionic capacitor run android",
+    "build:ios": "ionic build --prod && ionic capacitor sync ios && ionic capacitor open ios"
   },
   "private": true,
   "dependencies": {
@@ -61,5 +61,5 @@
     "tslint": "~5.12.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project"
+  "description": "ionic4 Capacitor Testbed"
 }

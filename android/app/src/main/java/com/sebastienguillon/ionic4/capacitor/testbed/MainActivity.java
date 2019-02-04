@@ -1,4 +1,4 @@
-package com.sebastienguillon.ionic.capacitor.testbed;
+package com.sebastienguillon.ionic4.capacitor.testbed;
 
 import android.os.Bundle;
 

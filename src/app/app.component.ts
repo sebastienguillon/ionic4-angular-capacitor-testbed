@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { AppState, DeviceInfo, Plugins, StatusBarStyle } from '@capacitor/core';
+import { AppState, Capacitor, DeviceInfo, Plugins, StatusBarStyle } from '@capacitor/core';
 // export { HelloWorldPlugin } from '../../node_modules/hello-world-capacitor-plugin';
+
+const { App, Device, StatusBar, SplashScreen } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -17,9 +19,19 @@ export class AppComponent {
   initializeApp(): void {
     this.platform.ready().then(() => {
       console.log('App is ready');
-      if (this.platform.is('mobile')) {
-        Plugins.StatusBar.setStyle({style: StatusBarStyle.Dark});
-        Plugins.SplashScreen.hide();
+
+      if (Capacitor.isPluginAvailable('StatusBar')) {
+        StatusBar.setStyle({style: StatusBarStyle.Dark})
+        .catch(err => {
+          console.log(err);
+        });
+      }
+
+      if (Capacitor.isPluginAvailable('SplashScreen')) {
+        SplashScreen.hide()
+        .catch(err => {
+          console.log(err);
+        });
       }
       this.listenToAppStateChange();
       this.getDeviceInfo();
@@ -28,8 +40,9 @@ export class AppComponent {
   }
 
   private listenToAppStateChange(): void {
-    if (this.platform.is('mobile')) {
-      Plugins.App.addListener('appStateChange', (appState: AppState) => {
+    if (Capacitor.isPluginAvailable('App')) {
+      App.addListener('appStateChange',
+      (appState: AppState) => {
         if (appState.isActive) {
           console.log('App has become active');
         } else {
@@ -50,8 +63,6 @@ export class AppComponent {
   }
 
   private async getDeviceInfo(): Promise<void> {
-    console.log('Plugins: ', Plugins);
-    const { Device } = Plugins;
     const deviceInfo: DeviceInfo = await Device.getInfo();
     console.log('Device info:', deviceInfo);
   }

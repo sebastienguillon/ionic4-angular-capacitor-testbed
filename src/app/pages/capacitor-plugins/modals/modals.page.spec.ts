@@ -1,24 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppPreferences } from '@ionic-native/app-preferences/ngx';
 
-import { AppPreferencesPage } from './app-preferences.page';
+import { ModalsPage } from './modals.page';
 
-describe('AppPreferencesPage', () => {
-  let component: AppPreferencesPage;
-  let fixture: ComponentFixture<AppPreferencesPage>;
+describe('ModalsPage', () => {
+  let component: ModalsPage;
+  let fixture: ComponentFixture<ModalsPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppPreferencesPage ],
-      providers: [AppPreferences],
+      declarations: [ ModalsPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppPreferencesPage);
+    fixture = TestBed.createComponent(ModalsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

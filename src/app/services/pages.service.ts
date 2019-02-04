@@ -24,6 +24,11 @@ export class PagesService {
       text: 'Motion',
       pageCategory: capacitorCategory,
     },
+    {
+      path: '/tabs/capacitor/modals',
+      text: 'Modals',
+      pageCategory: capacitorCategory,
+    },
   ];
 
   cordovaPages: PageLink[] = [
