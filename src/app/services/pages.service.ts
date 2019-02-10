@@ -6,6 +6,10 @@ const capacitorCategory: PageCategory = {
 };
 const cordovaCategory: PageCategory = {
   category: 'cordova',
+  color: 'medium',
+};
+const angularCategory: PageCategory = {
+  category: 'angular',
   color: 'danger',
 };
 
@@ -44,9 +48,18 @@ export class PagesService {
     },
   ];
 
+  angularPages: PageLink[] = [
+    {
+      path: '/tabs/angular/calendar',
+      text: 'Calendar',
+      pageCategory: angularCategory,
+    },
+  ];
+
   pages: PageLink[] = [
     ...this.capacitorPages,
     ...this.cordovaPages,
+    ...this.angularPages,
   ];
 
   constructor() { }
