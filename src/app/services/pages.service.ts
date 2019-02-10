@@ -29,6 +29,11 @@ export class PagesService {
       text: 'Modals',
       pageCategory: capacitorCategory,
     },
+    {
+      path: '/tabs/capacitor/camera',
+      text: 'Camera',
+      pageCategory: capacitorCategory,
+    },
   ];
 
   cordovaPages: PageLink[] = [

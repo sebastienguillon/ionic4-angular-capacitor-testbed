@@ -34,6 +34,10 @@ const routes: Routes = [
           {
             path: 'modals',
             loadChildren: '../pages/capacitor-plugins/modals/modals.module#ModalsPageModule'
+          },
+          {
+            path: 'camera',
+            loadChildren: '../pages/capacitor-plugins/camera/camera.module#CameraPageModule'
           }
         ]
       },
@@ -51,11 +55,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'camera',
+        path: 'angular',
         children: [
           {
             path: '',
-            loadChildren: '../pages/camera/camera.module#CameraPageModule'
+            loadChildren: '../pages/angular/angular.module#AngularPageModule'
           }
         ]
       },
