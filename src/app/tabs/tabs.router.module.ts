@@ -12,56 +12,60 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/home/home.module#HomePageModule'
-          }
-        ]
+            loadChildren: '../pages/home/home.module#HomePageModule',
+          },
+        ],
       },
       {
         path: 'capacitor',
         children: [
           {
             path: '',
-            loadChildren: '../pages/capacitor-plugins/capacitor-plugins.module#CapacitorPluginsPageModule'
+            loadChildren: '../pages/capacitor-plugins/capacitor-plugins.module#CapacitorPluginsPageModule',
           },
           {
             path: 'status-bar',
-            loadChildren: '../pages/capacitor-plugins/status-bar/status-bar.module#StatusBarPageModule'
+            loadChildren: '../pages/capacitor-plugins/status-bar/status-bar.module#StatusBarPageModule',
           },
           {
             path: 'motion',
-            loadChildren: '../pages/capacitor-plugins/motion/motion.module#MotionPageModule'
+            loadChildren: '../pages/capacitor-plugins/motion/motion.module#MotionPageModule',
           },
           {
             path: 'modals',
-            loadChildren: '../pages/capacitor-plugins/modals/modals.module#ModalsPageModule'
+            loadChildren: '../pages/capacitor-plugins/modals/modals.module#ModalsPageModule',
           },
           {
             path: 'camera',
-            loadChildren: '../pages/capacitor-plugins/camera/camera.module#CameraPageModule'
-          }
-        ]
+            loadChildren: '../pages/capacitor-plugins/camera/camera.module#CameraPageModule',
+          },
+        ],
       },
       {
         path: 'cordova',
         children: [
           {
             path: '',
-            loadChildren: '../pages/cordova-plugins/cordova-plugins.module#CordovaPluginsPageModule'
+            loadChildren: '../pages/cordova-plugins/cordova-plugins.module#CordovaPluginsPageModule',
           },
           {
             path: 'app-preferences',
-            loadChildren: '../pages/cordova-plugins/app-preferences/app-preferences.module#AppPreferencesPageModule'
-          }
-        ]
+            loadChildren: '../pages/cordova-plugins/app-preferences/app-preferences.module#AppPreferencesPageModule',
+          },
+        ],
       },
       {
         path: 'angular',
         children: [
           {
             path: '',
-            loadChildren: '../pages/angular/angular.module#AngularPageModule'
-          }
-        ]
+            loadChildren: '../pages/angular/angular.module#AngularPageModule',
+          },
+          {
+            path: 'calendar',
+            loadChildren: '../pages/angular/calendar/calendar.module#CalendarPageModule',
+          },
+        ],
       },
       {
         path: '',

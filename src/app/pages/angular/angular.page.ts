@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PagesService } from '../../services/pages.service';
 
 @Component({
   selector: 'app-angular',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./angular.page.scss'],
 })
 export class AngularPage implements OnInit {
+  pages: PageLink[] = [];
 
-  constructor() { }
+  constructor(
+    private pagesService: PagesService,
+  ) {
+    this.pages = this.pagesService.angularPages;
+  }
 
   ngOnInit() {
   }
