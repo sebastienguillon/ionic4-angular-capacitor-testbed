@@ -42,16 +42,17 @@ export class DatePickerComponent implements OnInit {
     'Novembre',
     'Décembre'
   ];
-  @Input() dayLabels = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
+  @Input() dayLabels = ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.']; // Default value, may be overwritten according to locale.
   @Input() date: Date;
   @Input() fromDate: Date;
   @Input() toDate: Date;
 
+  @Input() showNextPrevMonth = false;
   @Input() backgroundStyle = { 'background-color': '#ffffff' };
   @Input() notInCalendarStyle = { 'color': '#bbbbbb' };
   @Input() dayLabelsStyle = { 'font-weight': 700, 'font-size': '14px' };
-  @Input() monthLabelsStyle = {  'font-size': '15px' };
-  @Input() yearLabelsStyle = {  'font-size': '15px' };
+  @Input() monthLabelsStyle = { 'font-size': '15px' };
+  @Input() yearLabelsStyle = { 'font-size': '15px' };
   @Input() itemSelectedStyle = { 'background': '#488aff', 'color': '#f4f4f4 !important' };
   @Input() todaysItemStyle = { 'color': '#000000', 'background-color': '#fb0' };
 
@@ -62,11 +63,11 @@ export class DatePickerComponent implements OnInit {
   years: number[];
 
   yearSelected = new Date().getFullYear();
-  monthSelected = new Date().getMonth() + 1;
+  monthSelected: number = new Date().getMonth() + 1;
 
-  currentYear = new Date().getFullYear();
-  currentMonth = new Date().getMonth() + 1;
-  currentDay = new Date().getDate();
+  currentYear: number = new Date().getFullYear();
+  currentMonth: number = new Date().getMonth() + 1;
+  currentDay: number = new Date().getDate();
 
   daySelected: Day;
   dayHighlighted: Day;
@@ -74,13 +75,18 @@ export class DatePickerComponent implements OnInit {
   startYear: number;
   endYear: number;
 
+  constructor() {
+    moment.locale('fr');
+    console.log(moment.locale());
+    this.dayLabels = ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'];
+  }
+
   ngOnInit() {
     this.initOptions();
     this.createCalendarWeeks();
   }
 
-  initOptions() {
-
+  initOptions(): void {
     if (this.date && this.fromDate && this.date < this.fromDate) {
       throw new Error('Invalid date input. date must be same or greater than fromDate');
     }
@@ -102,7 +108,7 @@ export class DatePickerComponent implements OnInit {
     }
   }
 
-  createCalendarWeeks() {
+  createCalendarWeeks(): void {
     this.weeks = this.generateCalendarWeeks(
       Day.fromMoment(
         moment(this.monthSelected + '-01-' + this.yearSelected, 'MM-DD-YYYY')
@@ -115,8 +121,8 @@ export class DatePickerComponent implements OnInit {
       return true;
     }
 
-    let previousMonth;
-    let previousYear;
+    let previousMonth: number;
+    let previousYear: number;
     if (this.monthSelected === 1) {
       previousMonth = 11;
       previousYear = this.yearSelected - 1;
@@ -146,10 +152,9 @@ export class DatePickerComponent implements OnInit {
 
     // The first day of next month should be less than or equal to toDate
     return new Date(nextYear, nextMonth, 1) <= this.toDate;
-
   }
 
-  previous() {
+  previous(): void {
     if (this.monthSelected === 1) {
       this.monthSelected = 12;
       this.yearSelected--;
@@ -160,7 +165,7 @@ export class DatePickerComponent implements OnInit {
     this.createCalendarWeeks();
   }
 
-  next() {
+  next(): void {
     if (this.monthSelected === 12) {
       this.monthSelected = 1;
       this.yearSelected++;
@@ -171,11 +176,11 @@ export class DatePickerComponent implements OnInit {
     this.createCalendarWeeks();
   }
 
-  confirmDay(day: Day) {
+  confirmDay(day: Day): void {
     this.selectDate.emit(day.toDate());
   }
 
-  selectDay(day: Day) {
+  selectDay(day: Day): void {
     if (!this.isValidDay(day)) {
       return;
     }
@@ -186,11 +191,11 @@ export class DatePickerComponent implements OnInit {
     }, 200);
   }
 
-  showMonthView() {
+  showMonthView(): void {
     this.showView = 'month';
   }
 
-  hasYearSelection() {
+  hasYearSelection(): boolean {
     if (!this.toDate || !this.fromDate) {
       return true;
     }
@@ -198,7 +203,7 @@ export class DatePickerComponent implements OnInit {
     return this.toDate.getFullYear() !== this.fromDate.getFullYear();
   }
 
-  showYearView() {
+  showYearView(): void {
     this.showView = 'year';
     let startYear = this.yearSelected - 10;
     if (startYear % 10 !== 0) {
@@ -212,7 +217,7 @@ export class DatePickerComponent implements OnInit {
     this.generateYears();
   }
 
-  generateYears() {
+  generateYears(): void {
     if (this.fromDate && this.startYear < this.fromDate.getFullYear()) {
       this.startYear = this.fromDate.getFullYear();
     }
@@ -227,19 +232,19 @@ export class DatePickerComponent implements OnInit {
     }
   }
 
-  showPreviousYears() {
+  showPreviousYears(): void {
     this.endYear = this.startYear - 1;
     this.startYear = this.endYear - 19;
     this.generateYears();
   }
 
-  showNextYears() {
+  showNextYears(): void {
     this.startYear = this.endYear + 1;
     this.endYear = this.startYear + 19;
     this.generateYears();
   }
 
-  hasPreviousYears() {
+  hasPreviousYears(): boolean {
     if (!this.fromDate) {
       return true;
     }
@@ -247,7 +252,7 @@ export class DatePickerComponent implements OnInit {
     return this.startYear > this.fromDate.getFullYear();
   }
 
-  hasNextYears() {
+  hasNextYears(): boolean {
     if (!this.toDate) {
       return true;
     }
@@ -255,7 +260,7 @@ export class DatePickerComponent implements OnInit {
     return this.endYear < this.toDate.getFullYear();
   }
 
-  selectMonth(month: number) {
+  selectMonth(month: number): void {
     if (!this.isValidMonth(month - 1)) {
       return;
     }
@@ -267,7 +272,7 @@ export class DatePickerComponent implements OnInit {
     }, 200);
   }
 
-  selectYear(year) {
+  selectYear(year: number): void {
     this.yearSelected = year;
     this.createCalendarWeeks();
     setTimeout(() => {
@@ -275,11 +280,11 @@ export class DatePickerComponent implements OnInit {
     }, 200);
   }
 
-  resetView() {
+  resetView(): void {
     this.showView = 'calendar';
   }
 
-  isToday(day) {
+  isToday(day: number): boolean {
     return this.yearSelected === this.currentYear && this.monthSelected === this.currentMonth && this.currentDay === day;
   }
 
@@ -300,7 +305,7 @@ export class DatePickerComponent implements OnInit {
     return weeks;
   }
 
-  isValidDay(day: Day) {
+  isValidDay(day: Day): boolean {
     if (!this.toDate && !this.fromDate) {
       return true;
     }
@@ -318,7 +323,7 @@ export class DatePickerComponent implements OnInit {
     }
   }
 
-  isValidMonth(index: number) {
+  isValidMonth(index: number): boolean {
     if (
       this.toDate &&
       this.toDate.getFullYear() !== this.yearSelected &&
@@ -359,7 +364,8 @@ export class DatePickerComponent implements OnInit {
     return style;
   }
 
-  getMonthStyle(index) {
+  getMonthStyle(index: number) {
+    console.log('getMonthStyle, index:', index);
     let style = {};
     style = {...style, ...this.monthLabelsStyle};
     if (index === this.currentMonth - 1) {
@@ -373,7 +379,7 @@ export class DatePickerComponent implements OnInit {
     return style;
   }
 
-  getYearStyle(year) {
+  getYearStyle(year: number) {
     let style = {};
     style = {...style, ...this.yearLabelsStyle};
     if (year === this.currentYear) {

@@ -1,12 +1,12 @@
 <div [ngStyle]="backgroundStyle">
   <ion-item *ngIf="showView === 'calendar'" [ngStyle]="backgroundStyle">
-    <ion-button fill="clear" (click)="showMonthView()" class="calendar-button">
+    <ion-button fill="clear" (click)="showMonthView()" color="dark">
       {{monthLabels[monthSelected-1]}}
     </ion-button>
-    <ion-button fill="clear" [disabled]="!hasYearSelection()" (click)="showYearView()" class="calendar-button">
+    <ion-button fill="clear" [disabled]="!hasYearSelection()" (click)="showYearView()" color="dark">
       {{yearSelected}}
     </ion-button>
-    <span slot="end" *ngIf="hasPrevious() || hasNext()">
+    <span slot="end" *ngIf="showNextPrevMonth && (hasPrevious() || hasNext())">
       <ion-button fill="clear" [disabled]="!hasPrevious()" (click)="previous()">
         <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
       </ion-button>
