@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../../../services/config.service';
 
 @Component({
   selector: 'app-calendar',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
+  locale: string;
 
-  constructor() { }
+  constructor(
+    public configService: ConfigService,
+  ) {
+    this.locale = this.configService.getLocale();
+  }
 
   ngOnInit() {
   }

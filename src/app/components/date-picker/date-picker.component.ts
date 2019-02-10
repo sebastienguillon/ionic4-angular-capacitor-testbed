@@ -42,10 +42,11 @@ export class DatePickerComponent implements OnInit {
     'Novembre',
     'Décembre'
   ];
-  @Input() dayLabels = ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.']; // Default value, may be overwritten according to locale.
+  @Input() dayLabels = ['mon.', 'tue.', 'wed.', 'thu.', 'fri.', 'stm.', 'sun.']; // Default value, may be overwritten according to locale.
   @Input() date: Date;
   @Input() fromDate: Date;
   @Input() toDate: Date;
+  @Input() locale: string;
 
   @Input() showNextPrevMonth = false;
   @Input() backgroundStyle = { 'background-color': '#ffffff' };
@@ -76,9 +77,6 @@ export class DatePickerComponent implements OnInit {
   endYear: number;
 
   constructor() {
-    moment.locale('fr');
-    console.log(moment.locale());
-    this.dayLabels = ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'];
   }
 
   ngOnInit() {
@@ -87,6 +85,11 @@ export class DatePickerComponent implements OnInit {
   }
 
   initOptions(): void {
+    moment.locale(this.locale);
+    if (moment.locale() === 'fr') {
+      this.dayLabels = ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'];
+    }
+
     if (this.date && this.fromDate && this.date < this.fromDate) {
       throw new Error('Invalid date input. date must be same or greater than fromDate');
     }

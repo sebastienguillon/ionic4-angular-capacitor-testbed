@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { AppState, Capacitor, DeviceInfo, Plugins, StatusBarStyle } from '@capacitor/core';
+
+import { ConfigService } from './services/config.service';
+
 // export { HelloWorldPlugin } from '../../node_modules/hello-world-capacitor-plugin';
 
 const { App, Device, StatusBar, SplashScreen } = Plugins;
@@ -11,12 +14,14 @@ const { App, Device, StatusBar, SplashScreen } = Plugins;
 })
 export class AppComponent {
   constructor(
+    private configService: ConfigService,
     private platform: Platform,
   ) {
     this.initializeApp();
   }
 
   initializeApp(): void {
+    this.configService.setLocale('fr');
     this.platform.ready().then(() => {
       console.log('App is ready');
 
