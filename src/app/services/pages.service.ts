@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 
-const capacitorCategory: PageCategory = {
-  category: 'capacitor',
+const ionicCategory: PageCategory = {
+  category: 'ionic',
   color: 'primary',
-};
-const cordovaCategory: PageCategory = {
-  category: 'cordova',
-  color: 'medium',
 };
 const angularCategory: PageCategory = {
   category: 'angular',
   color: 'danger',
+};
+const capacitorCategory: PageCategory = {
+  category: 'capacitor',
+  color: 'secondary',
+};
+const cordovaCategory: PageCategory = {
+  category: 'cordova',
+  color: 'medium',
 };
 
 @Injectable({
@@ -40,6 +44,14 @@ export class PagesService {
     },
   ];
 
+  ionicPages: PageLink[] = [
+    {
+      path: '/tabs/ionic/sticky',
+      text: 'Sticky',
+      pageCategory: ionicCategory,
+    },
+  ];
+
   cordovaPages: PageLink[] = [
     {
       path: '/tabs/cordova/app-preferences',
@@ -60,6 +72,7 @@ export class PagesService {
     ...this.capacitorPages,
     ...this.cordovaPages,
     ...this.angularPages,
+    ...this.ionicPages,
   ];
 
   constructor() { }

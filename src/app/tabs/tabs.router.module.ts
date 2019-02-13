@@ -17,6 +17,32 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'ionic',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/ionic/ionic.module#IonicPageModule',
+          },
+          {
+            path: 'sticky',
+            loadChildren: '../pages/ionic/sticky/sticky.module#StickyPageModule',
+          },
+        ],
+      },
+      {
+        path: 'angular',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/angular/angular.module#AngularPageModule',
+          },
+          {
+            path: 'calendar',
+            loadChildren: '../pages/angular/calendar/calendar.module#CalendarPageModule',
+          },
+        ],
+      },
+      {
         path: 'capacitor',
         children: [
           {
@@ -51,19 +77,6 @@ const routes: Routes = [
           {
             path: 'app-preferences',
             loadChildren: '../pages/cordova-plugins/app-preferences/app-preferences.module#AppPreferencesPageModule',
-          },
-        ],
-      },
-      {
-        path: 'angular',
-        children: [
-          {
-            path: '',
-            loadChildren: '../pages/angular/angular.module#AngularPageModule',
-          },
-          {
-            path: 'calendar',
-            loadChildren: '../pages/angular/calendar/calendar.module#CalendarPageModule',
           },
         ],
       },
