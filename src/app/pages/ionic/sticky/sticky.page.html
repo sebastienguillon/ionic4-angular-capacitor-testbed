@@ -9,86 +9,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>A</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>B</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>C</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>D</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>E</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>F</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>G</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>H</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider color="light" sticky>I</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
+    <ion-item-group *ngFor="let letter of letters">
+      <ion-item-divider color="light" sticky>{{ letter }}</ion-item-divider>
+      <ion-item *ngFor="let country of countries[letter]">
+        {{ country }}
+      </ion-item>
     </ion-item-group>
   </ion-list>
 </ion-content>
