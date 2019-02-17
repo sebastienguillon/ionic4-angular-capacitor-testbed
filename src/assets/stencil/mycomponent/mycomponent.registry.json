@@ -1,0 +1,15 @@
+{
+  "namespace": "mycomponent",
+  "fsNamespace": "mycomponent",
+  "loader": "../mycomponent.js",
+  "core": "mycomponent.aliqoiet.js",
+  "corePolyfilled": "mycomponent.w1mr6k3f.js",
+  "components": {
+    "my-component": {
+      "bundleIds": {
+        "$": "faef9h6t"
+      },
+      "encapsulation": "shadow"
+    }
+  }
+}

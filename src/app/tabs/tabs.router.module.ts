@@ -43,6 +43,19 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'stencil',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/stencil/stencil.module#StencilPageModule',
+          },
+          {
+            path: 'stencil-basic',
+            loadChildren: '../pages/stencil/stencil-basic/stencil-basic.module#StencilBasicPageModule',
+          },
+        ],
+      },
+      {
         path: 'capacitor',
         children: [
           {

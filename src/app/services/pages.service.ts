@@ -8,6 +8,10 @@ const angularCategory: PageCategory = {
   category: 'angular',
   color: 'danger',
 };
+const stencilCategory: PageCategory = {
+  category: 'stencil',
+  color: 'dark',
+};
 const capacitorCategory: PageCategory = {
   category: 'capacitor',
   color: 'secondary',
@@ -44,6 +48,14 @@ export class PagesService {
     },
   ];
 
+  stencilPages: PageLink[] = [
+    {
+      path: '/tabs/stencil/stencil-basic',
+      text: 'Stencil basic',
+      pageCategory: stencilCategory,
+    },
+  ];
+
   ionicPages: PageLink[] = [
     {
       path: '/tabs/ionic/sticky',
@@ -71,6 +83,7 @@ export class PagesService {
   pages: PageLink[] = [
     ...this.capacitorPages,
     ...this.cordovaPages,
+    ...this.stencilPages,
     ...this.angularPages,
     ...this.ionicPages,
   ];
