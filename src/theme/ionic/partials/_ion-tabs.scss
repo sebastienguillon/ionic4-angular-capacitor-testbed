@@ -1,7 +1,9 @@
 ion-tabs {
   /*
-    WARNING:
-    Will show through some other ionic components, like ion-list.
+  WARNING:
+  Will show through some other ionic components, like
+  - ion-list
+  - ion-toggle
   */
   --ion-background-color: transparent;
 }
