@@ -27,6 +27,10 @@ const routes: Routes = [
             path: 'sticky',
             loadChildren: '../pages/ionic/sticky/sticky.module#StickyPageModule',
           },
+          {
+            path: 'ion-modal',
+            loadChildren: '../pages/ionic/ion-modal/ion-modal.module#IonModalPageModule',
+          },
         ],
       },
       {

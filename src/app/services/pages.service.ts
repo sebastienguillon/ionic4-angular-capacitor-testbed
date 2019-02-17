@@ -58,6 +58,11 @@ export class PagesService {
 
   ionicPages: PageLink[] = [
     {
+      path: '/tabs/ionic/ion-modal',
+      text: 'ion-modal',
+      pageCategory: ionicCategory,
+    },
+    {
       path: '/tabs/ionic/sticky',
       text: 'Sticky',
       pageCategory: ionicCategory,
