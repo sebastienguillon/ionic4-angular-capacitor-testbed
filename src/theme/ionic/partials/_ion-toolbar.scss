@@ -1,0 +1,5 @@
+// Set toolbar background color globally.
+ion-toolbar {
+  --color: #fff;
+  --background: linear-gradient(45deg, var(--ion-color-danger) 0%, var(--ion-color-danger) 20%, var(--ion-color-warning) 100%);
+}

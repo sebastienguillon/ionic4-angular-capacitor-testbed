@@ -9,3 +9,6 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+// Load all styles targetting Ionic components.
+@import './theme/ionic/ionic.scss';

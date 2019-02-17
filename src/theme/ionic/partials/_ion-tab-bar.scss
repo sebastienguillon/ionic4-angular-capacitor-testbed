@@ -1,0 +1,9 @@
+ion-tab-bar {
+  /*
+    WARNING:
+    Will show through some other ionic components, like ion-list.
+  */
+  --background: linear-gradient(45deg, var(--ion-color-dark) 0%, var(--ion-color-tertiary) 100%);
+  --border: 3px solid var(--ion-color-primary);
+  --color: #0f0
+}

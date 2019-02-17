@@ -1,0 +1,7 @@
+ion-item {
+  /*
+    WARNING:
+    Needed because we are using ion-tabs which sets a background color.
+  */
+  --ion-background-color: transparent;
+}

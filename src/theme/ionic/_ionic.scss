@@ -1,0 +1,14 @@
+/*
+  These styles target ONLY Ionic components.
+  This page loads files from the ./partials subfolder.
+  Each file in the ./partials subfolder targets ONE Ionic component,
+  and bears the corresponding file name prefixed with an underscore.
+*/
+@import 'partials/ion-card';
+@import 'partials/ion-content';
+@import 'partials/ion-item';
+@import 'partials/ion-list';
+@import 'partials/ion-tab-bar';
+@import 'partials/ion-tab-button';
+@import 'partials/ion-tabs';
+@import 'partials/ion-toolbar';
