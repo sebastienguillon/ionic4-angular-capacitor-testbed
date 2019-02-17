@@ -75,6 +75,11 @@ export class PagesService {
       text: 'App Preferences',
       pageCategory: cordovaCategory,
     },
+    {
+      path: '/tabs/cordova/cordova-statusbar',
+      text: 'Status Bar',
+      pageCategory: cordovaCategory,
+    },
   ];
 
   angularPages: PageLink[] = [

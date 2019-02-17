@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-
-type DefaultColors = 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'dark';
-type StatusBarStyles = 'default' | 'lightContent' | 'blackTranslucent' | 'blackOpaque';
-
-interface AppIonicColor {
-  name: DefaultColors;
-  color: string;
-}
+import { Platform } from '@ionic/angular';
+import { Plugins, StatusBarStyle } from '@capacitor/core';
 
 @Component({
   selector: 'app-status-bar',
@@ -15,69 +8,44 @@ interface AppIonicColor {
   styleUrls: ['./status-bar.page.scss'],
 })
 export class StatusBarPage implements OnInit {
-  statusBarColor: DefaultColors = 'dark';
-  statusBarStyle: StatusBarStyles = 'default';
-  statusBarStyles: StatusBarStyles[] = ['default', 'lightContent', 'blackTranslucent', 'blackOpaque'];
-  showStatusBar = true;
-  overlayWebView = false;
-  colors: AppIonicColor[] = [{
-    name: 'primary',
-    color: '#3880ff',
-  }, {
-    name: 'secondary',
-    color: '#0cd1e8',
-  }, {
-    name: 'tertiary',
-    color: '#7044ff',
-  }, {
-    name: 'success',
-    color: '#10dc60',
-  }, {
-    name: 'warning',
-    color: '#ffce00',
-  }, {
-    name: 'danger',
-    color: '#f04141',
-  }, {
-    name: 'dark',
-    color: '#222428',
-  }];
+
+  statusBarStyles = {
+    dark: StatusBarStyle.Dark,
+    light: StatusBarStyle.Light,
+  };
 
   constructor(
-    private statusBar: StatusBar
+    private platform: Platform
   ) { }
 
   ngOnInit() {
-  }
-
-  setStatusbarColor(): void {
-    console.log('setStatusbarColor', this.statusBarColor);
-    this.statusBar.backgroundColorByHexString(this.statusBarColor);
-  }
-
-  toggleStatusBar(): void {
-    (this.showStatusBar) ? this.statusBar.show() : this.statusBar.hide();
-  }
-
-  setStatusBarOverlayWebView(): void {
-    this.statusBar.overlaysWebView(this.overlayWebView);
-  }
-
-  toggleStatusBarStyle(): void {
-    switch (this.statusBarStyle) {
-      case 'default':
-        this.statusBar.styleDefault();
-        break;
-      case 'lightContent':
-        this.statusBar.styleLightContent();
-        break;
-      case 'blackTranslucent':
-        this.statusBar.styleBlackTranslucent();
-        break;
-      case 'blackOpaque':
-        this.statusBar.styleBlackOpaque();
-        break;
+    if (this.platform.is('mobile')) {
+      console.log('StatusBarStyle.Dark:', StatusBarStyle.Dark);
+      console.log('StatusBarStyle.Light:', StatusBarStyle.Light);
     }
   }
 
+  hideStatusBar(): void {
+    if (this.platform.is('mobile')) {
+      Plugins.StatusBar.hide();
+    }
+  }
+
+  showStatusBar(): void {
+    if (this.platform.is('mobile')) {
+      Plugins.StatusBar.show();
+    }
+  }
+
+  setSatusBarStyle(style: StatusBarStyle): void {
+    if (this.platform.is('mobile')) {
+      Plugins.StatusBar.setStyle({style: style});
+    }
+  }
+
+  setSatusBarColor(color: string): void {
+    if (this.platform.is('mobile')) {
+      Plugins.StatusBar.setBackgroundColor({color});
+    }
+  }
 }

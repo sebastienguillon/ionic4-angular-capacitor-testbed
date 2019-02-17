@@ -7,33 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <ion-card-content>
-      <p>Set the display and style properties of the system Status Bar.</p>
-    </ion-card-content>
-  </ion-card>
+<ion-content padding>
 
-  <ion-list>
-    <ion-item>
-      <ion-label>Set the color of the Status Bar</ion-label>
-      <ion-select (ionChange)="setStatusbarColor()" [(ngModel)]="statusBarColor" placeholder="Select a color">
-        <ion-select-option value="{{ color.color }}" *ngFor="let color of colors">{{ color.name }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Show Status Bar</ion-label>
-      <ion-toggle color="primary" [(ngModel)]="showStatusBar" (ionChange)="toggleStatusBar()"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Overlay WebView</ion-label>
-      <ion-toggle color="primary" [(ngModel)]="overlayWebView" (ionChange)="setStatusBarOverlayWebView()"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Set the style of the Status Bar</ion-label>
-      <ion-select (ionChange)="toggleStatusBarStyle()" [(ngModel)]="statusBarStyle" placeholder="Select a style">
-        <ion-select-option value="{{ style }}" *ngFor="let style of statusBarStyles">{{ style }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  <ion-button (click)="hideStatusBar()">Hide StatusBar</ion-button>
+  <ion-button (click)="showStatusBar()">Show StatusBar</ion-button>
+
+  <ion-button (click)="setSatusBarStyle(statusBarStyles.dark)">Set Dark style</ion-button>
+  <ion-button (click)="setSatusBarStyle(statusBarStyles.light)">Set Light style</ion-button>
+
+  <ion-button (click)="setSatusBarColor('#ff0000')">Make StatusBar Red</ion-button>
+  <ion-button (click)="setSatusBarColor('#00ff00')">Make StatusBar Green</ion-button>
+  <ion-button (click)="setSatusBarColor('#0000ff')">Make StatusBar Blue</ion-button>
+
 </ion-content>

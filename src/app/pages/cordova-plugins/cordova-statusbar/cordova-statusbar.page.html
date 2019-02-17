@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/capacitor"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Status Bar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <p>Set the display and style properties of the system Status Bar.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Set the color of the Status Bar</ion-label>
+      <ion-select (ionChange)="setStatusbarColor()" [(ngModel)]="statusBarColor" placeholder="Select a color">
+        <ion-select-option value="{{ color.color }}" *ngFor="let color of colors">{{ color.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Show Status Bar</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="showStatusBar" (ionChange)="toggleStatusBar()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Overlay WebView</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="overlayWebView" (ionChange)="setStatusBarOverlayWebView()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Set the style of the Status Bar</ion-label>
+      <ion-select (ionChange)="toggleStatusBarStyle()" [(ngModel)]="statusBarStyle" placeholder="Select a style">
+        <ion-select-option value="{{ style }}" *ngFor="let style of statusBarStyles">{{ style }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

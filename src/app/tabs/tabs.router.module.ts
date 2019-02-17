@@ -95,6 +95,10 @@ const routes: Routes = [
             path: 'app-preferences',
             loadChildren: '../pages/cordova-plugins/app-preferences/app-preferences.module#AppPreferencesPageModule',
           },
+          {
+            path: 'cordova-statusbar',
+            loadChildren: '../pages/cordova-plugins/cordova-statusbar/cordova-statusbar.module#CordovaStatusBarPageModule',
+          },
         ],
       },
       {
