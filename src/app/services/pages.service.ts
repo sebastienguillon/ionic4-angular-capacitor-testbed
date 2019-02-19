@@ -46,6 +46,11 @@ export class PagesService {
       text: 'Camera',
       pageCategory: capacitorCategory,
     },
+    {
+      path: '/tabs/capacitor/keyboard',
+      text: 'Keyboard',
+      pageCategory: capacitorCategory,
+    },
   ];
 
   stencilPages: PageLink[] = [
