@@ -18,4 +18,7 @@ export class CalendarPage implements OnInit {
   ngOnInit() {
   }
 
+  dateSelected($event: Date) {
+    console.log($event);
+  }
 }
