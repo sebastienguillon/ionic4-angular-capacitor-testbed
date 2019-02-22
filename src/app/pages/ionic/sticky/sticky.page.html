@@ -7,13 +7,5 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item-group *ngFor="let letter of letters">
-      <ion-item-divider color="light" sticky>{{ letter }}</ion-item-divider>
-      <ion-item *ngFor="let country of countries[letter]">
-        {{ country }}
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
+<ion-content padding>
 </ion-content>

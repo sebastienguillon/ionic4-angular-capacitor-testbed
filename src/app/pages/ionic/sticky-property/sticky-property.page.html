@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/ionic"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ionic’s "sticky" property</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-group *ngFor="let letter of letters">
+      <ion-item-divider color="light" sticky>{{ letter }}</ion-item-divider>
+      <ion-item *ngFor="let country of countries[letter]">
+        {{ country }}
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

@@ -69,7 +69,12 @@ export class PagesService {
     },
     {
       path: '/tabs/ionic/sticky',
-      text: 'Sticky',
+      text: 'CSS position: sticky',
+      pageCategory: ionicCategory,
+    },
+    {
+      path: '/tabs/ionic/sticky-property',
+      text: 'Ionic’s "sticky" property',
       pageCategory: ionicCategory,
     },
   ];
