@@ -48,6 +48,10 @@ const routes: Routes = [
             path: 'calendar',
             loadChildren: '../pages/angular/calendar/calendar.module#CalendarPageModule',
           },
+          {
+            path: 'toggle-switch',
+            loadChildren: '../pages/angular/toggle-switch-demo/toggle-switch-demo.module#ToggleSwitchDemoPageModule',
+          },
         ],
       },
       {

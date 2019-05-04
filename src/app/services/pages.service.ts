@@ -98,6 +98,11 @@ export class PagesService {
       text: 'Calendar',
       pageCategory: angularCategory,
     },
+    {
+      path: '/tabs/angular/toggle-switch',
+      text: 'Toggle Switch',
+      pageCategory: angularCategory,
+    },
   ];
 
   pages: PageLink[] = [
