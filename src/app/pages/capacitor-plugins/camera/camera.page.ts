@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 
@@ -11,7 +11,6 @@ export class CameraPage implements OnInit {
   image: SafeResourceUrl;
 
   constructor(
-    private zone: NgZone,
     private sanitizer: DomSanitizer,
   ) { }
 
@@ -29,6 +28,6 @@ export class CameraPage implements OnInit {
 
     // Example of using the Base64 return type. It's recommended to use CameraResultType.Uri
     // instead for performance reasons when showing large, or a large amount of images.
-    this.image = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.base64Data));
+    this.image = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.base64String));
   }
 }
