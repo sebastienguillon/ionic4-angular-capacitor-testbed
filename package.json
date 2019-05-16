@@ -1,5 +1,5 @@
 {
-  "name": "ionic4-capacitor-testbed",
+  "name": "ionic4-angular-capacitor-testbed",
   "version": "0.0.1",
   "author": "Sébastien Guillon",
   "homepage": "http://sebastienguillon.com/",
@@ -65,5 +65,5 @@
     "tslint": "~5.12.0",
     "typescript": "~3.1.6"
   },
-  "description": "ionic4 Capacitor Testbed"
+  "description": "ionic4 Angular Capacitor Testbed"
 }

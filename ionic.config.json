@@ -1,5 +1,5 @@
 {
-  "name": "ionic-capacitor-testbed",
+  "name": "ionic4-angular-capacitor-testbed",
   "integrations": {
     "capacitor": {}
   },

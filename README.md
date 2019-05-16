@@ -1,4 +1,4 @@
-# Ionic 4 Capacitor Testbed
+# Ionic 4 Angular Capacitor Testbed
 
 ## Table of contents
 - [Getting started](#getting-started)
@@ -9,7 +9,7 @@
 
 An [Ionic 4](https://ionicframework.com/docs/) testbed with [Capacitor](https://capacitor.ionicframework.com/) integration and [Angular](https://angular.io/) framework.
 
-The purpose of this project is to test the Ionic 4 frameword and all related frameworks or technologies, it has no particular functional purpose.
+The purpose of this project is to test the Ionic 4 framework and all related frameworks or technologies, it has no particular functional purpose.
 
 Some of the technologies tested are:
 
