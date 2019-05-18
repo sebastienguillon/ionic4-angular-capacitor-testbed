@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 
 import { AppPreferences } from '@ionic-native/app-preferences/ngx';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 /**
  * REMINDER:
  * Since Angular 6, we don't need to add singleton services to app.module.ts's
@@ -25,6 +27,7 @@ import { AppPreferences } from '@ionic-native/app-preferences/ngx';
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
   ],

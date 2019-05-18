@@ -22,6 +22,11 @@ Some of the technologies tested are:
 
 This project is an experimental testbed but I intend to use only recommended and best-practices so that it can serve as a reference repository for my other projects.
 
+
+## Extra Angular modules
+- [@angular/animations](https://www.npmjs.com/package/@angular/animations) for [animations](https://angular.io/guide/animations).
+
+
 {:#getting-started}
 ## Getting started
 Clone this repo then install dependencies:
