@@ -51,6 +51,11 @@ export class PagesService {
       text: 'Keyboard',
       pageCategory: capacitorCategory,
     },
+    {
+      path: '/tabs/capacitor/geolocation',
+      text: 'Geolocation',
+      pageCategory: capacitorCategory,
+    },
   ];
 
   stencilPages: PageLink[] = [

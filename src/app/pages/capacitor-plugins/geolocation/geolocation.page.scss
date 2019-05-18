@@ -1,0 +1,9 @@
+ion-card-header {
+  display: flex;
+  justify-content: space-between;
+
+  ion-badge {
+    font-size: 1rem;
+    align-self: center;
+  }
+}

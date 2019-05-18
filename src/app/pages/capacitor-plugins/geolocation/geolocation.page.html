@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/capacitor"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Geolocation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Current</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="currentGeoloc">
+        <p>
+          lat:{{ currentGeoloc?.coords.latitude }}<br>
+          long: {{ currentGeoloc?.coords.longitude }}
+        </p>
+      </div>
+      <div *ngIf="!currentGeoloc">
+        <ion-spinner></ion-spinner> <em>Waiting</em>
+      </div>
+      <ion-button (click)="getCurrentPosition()">getCurrentPosition()</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Watch</ion-card-title>
+      <ion-badge position="end" color="primary" [@flashing]="flashingState">{{ positions.length }}</ion-badge>
+    </ion-card-header>
+    <ion-card-content>
+      <h3>Latest</h3>
+      <div *ngIf="watchedGeoloc">
+        <p>
+          lat: {{ watchedGeoloc?.coords.latitude }}<br>
+          long: {{ watchedGeoloc?.coords.longitude }}
+        </p>
+      </div>
+      <div *ngIf="!watchedGeoloc">
+        <ion-spinner></ion-spinner> <em>Waiting</em>
+      </div>
+      <ng-container *ngIf="positions.length">
+          <ion-item *ngFor="let position of positions">lat: {{ position.position.coords?.latitude }}, long: {{ position.position.coords?.longitude }}, T: {{ position.timestamp }}</ion-item>
+        </ng-container>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

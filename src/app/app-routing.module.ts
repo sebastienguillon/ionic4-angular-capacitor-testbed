@@ -3,10 +3,14 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: 'geolocation', loadChildren: './pages/capacitor-plugins/geolocation/geolocation.module#GeolocationPageModule' },
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, {
+      // preloadingStrategy: NoPreloading,
+      preloadingStrategy: PreloadAllModules
+    })
   ],
   exports: [
     RouterModule,

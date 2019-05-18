@@ -83,6 +83,10 @@ const routes: Routes = [
             loadChildren: '../pages/capacitor-plugins/motion/motion.module#MotionPageModule',
           },
           {
+            path: 'geolocation',
+            loadChildren: '../pages/capacitor-plugins/geolocation/geolocation.module#GeolocationPageModule',
+          },
+          {
             path: 'modals',
             loadChildren: '../pages/capacitor-plugins/modals/modals.module#ModalsPageModule',
           },
