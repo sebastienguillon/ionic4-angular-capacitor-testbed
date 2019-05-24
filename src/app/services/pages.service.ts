@@ -108,6 +108,11 @@ export class PagesService {
       text: 'Toggle Switch',
       pageCategory: angularCategory,
     },
+    {
+      path: '/tabs/angular/animations',
+      text: 'Animations',
+      pageCategory: angularCategory,
+    },
   ];
 
   pages: PageLink[] = [

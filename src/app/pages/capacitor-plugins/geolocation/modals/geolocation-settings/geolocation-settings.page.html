@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Geolocation plugin options</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
+
+    <ion-item lines="full">
+      <ion-label position="floating">Timeout</ion-label>
+      <ion-input type="number" formControlName="timeout" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label>Enable High Accuracy</ion-label>
+      <ion-toggle formControlName="enableHighAccuracy" color="danger" slot="end"></ion-toggle>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Maximum Age</ion-label>
+      <ion-input type="number" formControlName="maximumAge" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label>Require Altitude</ion-label>
+      <ion-toggle formControlName="requireAltitude" color="danger" slot="end"></ion-toggle>
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="!settingsForm.valid" expand="full" color="primary">
+      <ion-icon slot="start" name="save"></ion-icon>
+      Save
+    </ion-button>
+
+  </form>
+</ion-content>
+<!--
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button type="submit" [disabled]="!settingsForm.valid" expand="full" color="primary">
+        <ion-icon slot="start" name="save"></ion-icon>
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->

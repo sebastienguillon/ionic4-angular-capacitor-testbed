@@ -1,8 +1,8 @@
 PODS:
-  - Capacitor (1.0.0-beta.23):
-    - CapacitorCordova (= 1.0.0-beta.23)
-  - CapacitorCordova (1.0.0-beta.23)
-  - CordovaPlugins (1.0.0-beta.24):
+  - Capacitor (1.0.0-beta.25):
+    - CapacitorCordova (= 1.0.0-beta.25)
+  - CapacitorCordova (1.0.0-beta.25)
+  - CordovaPlugins (1.0.0-beta.25):
     - CapacitorCordova
 
 DEPENDENCIES:
@@ -19,9 +19,9 @@ EXTERNAL SOURCES:
     :path: "../capacitor-cordova-ios-plugins"
 
 SPEC CHECKSUMS:
-  Capacitor: 66dfab71aa20b7ebbf6f7a538698453efc66ce67
-  CapacitorCordova: a8a1f700bf7a1239ef078d7e8bb475b893c0833b
-  CordovaPlugins: 22c4af4fb7b240c7a186f2c8415c3fc5f5882ecf
+  Capacitor: be6076128754206ad87165889480b99dbb17e879
+  CapacitorCordova: f60ef624dfdb9b48155c19949d14efb66a617a9c
+  CordovaPlugins: 37a8ae09132c7b519ec78a8986cea74a2bee5025
 
 PODFILE CHECKSUM: e57e508ec5349ca6023fde9134b1008ce56a92fa
 

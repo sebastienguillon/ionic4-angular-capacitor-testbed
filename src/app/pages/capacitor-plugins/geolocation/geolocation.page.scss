@@ -1,9 +1,51 @@
-ion-card-header {
+.overlay {
+  background-color: rgba(var(--ion-color-medium-rgb), 0.33);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 
-  ion-badge {
-    font-size: 1rem;
-    align-self: center;
+  ion-spinner {
+    height: 33%;
+    width: 33%;
+  }
+}
+ion-card {
+  position: relative;
+
+  table {
+    &.history {
+      width: 100%;
+      margin-bottom: 1rem;
+      th {
+        text-align: left;
+      }
+    }
+  }
+
+  ion-card-header {
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
+    ion-badge {
+      font-size: 1rem;
+      align-self: center;
+    }
+  }
+  ion-card-content {
+    ion-card-title {
+      margin-top: 1rem;
+    }
+    ion-item {
+      --ion-background-color: transparent;
+    }
+    ion-note {
+      font-size: 1rem;
+      line-height: 1;
+    }
   }
 }

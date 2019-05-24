@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/angular"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Animations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>State: {{ flashingState }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="animation-demo" [@flashing]="flashingState"></div>
+      <ion-button (click)="toggleFlashingState()">toggleFlashingState()</ion-button>
+      <ion-button (click)="startFlashingInterval()" *ngIf="!flashIntervalRunning">startFlashingInterval()</ion-button>
+      <ion-button (click)="stopFlashingInterval()" *ngIf="flashIntervalRunning" color="success">stopFlashingInterval()</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

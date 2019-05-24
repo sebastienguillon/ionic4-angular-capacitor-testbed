@@ -4,6 +4,12 @@
       <ion-back-button defaultHref="/tabs/capacitor"></ion-back-button>
     </ion-buttons>
     <ion-title>Geolocation</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="openSettings()">
+        <ion-icon slot="end" name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,39 +19,65 @@
       <ion-card-title>Current</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div *ngIf="currentGeoloc">
-        <p>
-          lat:{{ currentGeoloc?.coords.latitude }}<br>
-          long: {{ currentGeoloc?.coords.longitude }}
-        </p>
-      </div>
-      <div *ngIf="!currentGeoloc">
-        <ion-spinner></ion-spinner> <em>Waiting</em>
-      </div>
-      <ion-button (click)="getCurrentPosition()">getCurrentPosition()</ion-button>
+      <app-geolocation-positions [position]="currentGeoloc"></app-geolocation-positions>
+      <ion-button (click)="getCurrentPosition()" [disabled]="waitingForCurrentGeolocation" expand="block">
+        <ion-icon slot="start" name="locate"></ion-icon>
+        Get Current Position
+      </ion-button>
     </ion-card-content>
+    <div *ngIf="waitingForCurrentGeolocation" class="overlay">
+      <ion-spinner color="primary"></ion-spinner>
+    </div>
   </ion-card>
 
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>Watch</ion-card-title>
-      <ion-badge position="end" color="primary" [@flashing]="flashingState">{{ positions.length }}</ion-badge>
+    <ion-progress-bar type="indeterminate" color="success" *ngIf="watchingPosition"></ion-progress-bar>
+    <ion-card-header [@flashing]="flashingState">
+        <ion-card-title>
+        Watch
+      </ion-card-title>
+      <span *ngIf="watchingPosition"><ion-badge position="end" color="success">{{ positions.length }}</ion-badge></span>
     </ion-card-header>
     <ion-card-content>
-      <h3>Latest</h3>
-      <div *ngIf="watchedGeoloc">
-        <p>
-          lat: {{ watchedGeoloc?.coords.latitude }}<br>
-          long: {{ watchedGeoloc?.coords.longitude }}
-        </p>
-      </div>
-      <div *ngIf="!watchedGeoloc">
-        <ion-spinner></ion-spinner> <em>Waiting</em>
-      </div>
-      <ng-container *ngIf="positions.length">
-          <ion-item *ngFor="let position of positions">lat: {{ position.position.coords?.latitude }}, long: {{ position.position.coords?.longitude }}, T: {{ position.timestamp }}</ion-item>
-        </ng-container>
+      <app-geolocation-positions [position]="watchedGeoloc"></app-geolocation-positions>
 
+      <ion-button (click)="watchPosition()" *ngIf="!watchingPosition" expand="block">
+        <ion-icon slot="start" name="navigate"></ion-icon>
+        Watch Position
+      </ion-button>
+      <ion-button (click)="stopWatchingPosition()" color="danger" *ngIf="watchingPosition" expand="block">
+        <ion-icon slot="start" name="navigate"></ion-icon>
+        Stop Watching Position
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="watchedGeoloc?.coords.latitude === null">
+    <ion-card-header>
+      <ion-card-title>History</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item no-padding lines="none" >
+        <ion-label>Mean time between positions</ion-label>
+        <ion-note slot="end" color="primary" mode="ios">
+          <span *ngIf="this.watchPositionsMeanInterval">{{ this.watchPositionsMeanInterval/1000 | number: '0.0-2'}} s</span>
+          <span><em *ngIf="!this.watchPositionsMeanInterval">no data</em></span>
+        </ion-note>
+      </ion-item>
+
+      <table class="history">
+        <tr>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Diff</th>
+        </tr>
+        <tr *ngFor="let position of positions">
+          <td>{{ position.position.coords?.latitude | number: '0.2-8' }}</td>
+          <td>{{ position.position.coords?.longitude | number: '0.2-8' }}</td>
+          <td>{{ position.diff/1000 | number: '0.0-2' }} s</td>
+        </tr>
+      </table>
     </ion-card-content>
   </ion-card>
 </ion-content>

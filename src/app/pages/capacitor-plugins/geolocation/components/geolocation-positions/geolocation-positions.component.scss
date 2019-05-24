@@ -1,0 +1,25 @@
+.geoloc {
+  margin-bottom: 1rem;
+}
+
+th[scope="row"] {
+  text-align: left;
+  padding: 0 0.5rem 0 0;
+  vertical-align: middle;
+}
+
+td {
+  &.icon {
+    font-size: 2rem;
+    vertical-align: middle;
+    line-height: 1;
+    padding-right: 0.5rem;
+
+    ion-icon {
+      vertical-align: middle;
+    }
+  }
+  &.number {
+    font-family: 'Courier New', Courier, monospace;
+  }
+}

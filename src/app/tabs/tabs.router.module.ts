@@ -52,6 +52,10 @@ const routes: Routes = [
             path: 'toggle-switch',
             loadChildren: '../pages/angular/toggle-switch-demo/toggle-switch-demo.module#ToggleSwitchDemoPageModule',
           },
+          {
+            path: 'animations',
+            loadChildren: '../pages/angular/animations/animations.module#AnimationsPageModule',
+          },
         ],
       },
       {

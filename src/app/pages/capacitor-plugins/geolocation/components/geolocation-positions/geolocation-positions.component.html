@@ -1,0 +1,27 @@
+<div class="geoloc">
+  <ng-container
+    *ngIf="position?.coords.latitude !== null; then positionTemplate; else noPositionTemplate">
+  </ng-container>
+
+  <ng-template #positionTemplate>
+    <table>
+      <tr>
+        <td rowspan="2" class="icon">
+          <span *ngIf="showIcon"><ion-icon name="pin" color="danger"></ion-icon></span>
+        </td>
+        <th scope="row">Latitude</th>
+        <td class="number">{{ position?.coords.latitude }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Longitude</th>
+        <td class="number">{{ position?.coords.longitude }}</td>
+      </tr>
+    </table>
+  </ng-template>
+
+  <ng-template #noPositionTemplate>
+    <div>
+      <em>No position</em>
+    </div>
+  </ng-template>
+</div>

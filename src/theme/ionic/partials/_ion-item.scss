@@ -1,7 +1,7 @@
 ion-item {
   /*
     WARNING:
-    Needed because we are using ion-tabs which sets a background color.
+    ion-tabs sets a background color.
   */
-  --ion-background-color: transparent;
+  --ion-background-color: rgba(var(--ion-color-light-rgb), 0.66);
 }

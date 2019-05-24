@@ -5,15 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { IonModalPage } from './ion-modal.page';
-
-// Modal page.
-import { InfoPageModule } from 'src/app/modals/info/info.module';
+import { AnimationsPage } from './animations.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: IonModalPage
+    component: AnimationsPage
   }
 ];
 
@@ -21,10 +18,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    InfoPageModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [IonModalPage]
+  declarations: [AnimationsPage]
 })
-export class IonModalPageModule {}
+export class AnimationsPageModule {}
