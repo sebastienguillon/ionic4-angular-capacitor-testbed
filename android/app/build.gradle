@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.sebastienguillon.ionic4.capacitor.testbed"
+        applicationId "com.sebastienguillon.ionic4.angular.capacitor.testbed"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
