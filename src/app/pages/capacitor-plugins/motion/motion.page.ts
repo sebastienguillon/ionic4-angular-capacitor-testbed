@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Plugins, MotionEventResult } from '@capacitor/core';
 
+const { Motion } = Plugins;
+
 @Component({
   selector: 'app-motion',
   templateUrl: './motion.page.html',
@@ -25,11 +27,11 @@ export class MotionPage implements OnInit {
   }
 
   startAccelerationListening(): void {
-    Plugins.Motion.addListener('accel', this.motionListener.bind(this));
+    Motion.addListener('accel', this.motionListener.bind(this));
   }
 
   stopAccelerationListening(): void {
-    Plugins.Motion.removeListener('accel', this.motionListener);
+    // Motion.removeListener('accel', this.motionListener);
   }
 
   private motionListener(motionEvent: MotionEventResult): void {
