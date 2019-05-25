@@ -97,9 +97,6 @@ const routes: Routes = [
           {
             path: 'camera',
             loadChildren: '../pages/capacitor-plugins/camera/camera.module#CameraPageModule',
-          }, {
-            path: 'keyboard',
-            loadChildren: '../pages/capacitor-plugins/keyboard/keyboard.module#KeyboardPageModule',
           },
         ],
       },
