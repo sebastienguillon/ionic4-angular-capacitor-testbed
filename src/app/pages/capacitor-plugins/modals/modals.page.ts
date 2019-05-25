@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetOptions, ActionSheetResult, ActionSheetOptionStyle, Plugins } from '@capacitor/core';
+import {
+  ActionSheetResult,
+  ActionSheetOption,
+  ActionSheetOptionStyle,
+  ConfirmResult,
+  PromptResult,
+  Plugins } from '@capacitor/core';
 
 const { Modals } = Plugins;
 
@@ -9,71 +15,69 @@ const { Modals } = Plugins;
   styleUrls: ['./modals.page.scss'],
 })
 export class ModalsPage implements OnInit {
+  // Used in template (public)
+  actionSheetResult: ActionSheetResult;
+  promptResult: PromptResult;
+  confirmResult: ConfirmResult;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  showActionSheet() {
-    const options: ActionSheetOptions = {
-      message: 'With a message',
-      options: [{ title: 'a'}, { title: 'b'}, { title: 'c'}],
-      title: 'Entitled'
-    };
-
-    Modals.showActions(options)
-    .then((val: ActionSheetResult) => {
-      console.log('val:', val);
-    });
-  }
-
   async showAlert() {
-    const alertRet = await Modals.alert({
+    await Modals.alert({
+      buttonTitle: 'buttonTitle',
+      message: 'this is an error',
       title: 'Stop',
-      message: 'this is an error'
     });
-    console.log('alertRet', alertRet);
   }
 
   async showConfirm() {
-    const confirmRet = await Modals.confirm({
-      title: 'Confirm Title',
-      message: 'Are you sure you\'d like to press the red button?',
+    this.confirmResult = await Modals.confirm({
       cancelButtonTitle: 'cancelButtonTitle',
       okButtonTitle: 'okButtonTitle',
+      message: 'This is the confirm message',
+      title: 'Confirm Title',
     });
-    console.log('Confirm ret', confirmRet);
+    console.log('this.confirmResult', this.confirmResult);
   }
 
   async showPrompt() {
-    const promptRet = await Modals.prompt({
-      title: 'Hello',
-      message: 'What\'s your name?',
+    this.promptResult = null;
+    this.promptResult = await Modals.prompt({
       cancelButtonTitle: 'cancelButtonTitle',
       inputPlaceholder: 'inputPlaceholder',
+      message: 'What\'s your name?',
       okButtonTitle: 'okButtonTitle',
+      title: 'Hello',
     });
-    console.log('Prompt ret', promptRet);
+    console.log('this.promptResult', this.promptResult);
   }
 
   async showActions() {
-    const promptRet = await Modals.showActions({
+    this.actionSheetResult = null;
+    this.actionSheetResult = await Modals.showActions({
       title: 'Photo Options',
       message: 'Select an option to perform',
       options: [
         {
-          title: 'Upload'
+          title: 'Cancel (style: Cancel)',
+          style: ActionSheetOptionStyle.Cancel,
         },
         {
-          title: 'Share'
+          title: 'Upload (no style)'
         },
         {
-          title: 'Remove',
-          style: ActionSheetOptionStyle.Destructive
+          title: 'Share (style: Default)',
+          style: ActionSheetOptionStyle.Default,
+        },
+        {
+          title: 'Remove (style: Destructive)',
+          style: ActionSheetOptionStyle.Destructive,
         }
       ]
     });
-    console.log('You selected', promptRet);
+    console.log('this.actionSheetResult:', this.actionSheetResult);
   }
 }

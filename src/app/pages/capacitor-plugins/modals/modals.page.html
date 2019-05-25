@@ -7,12 +7,73 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-button (click)="showActionSheet()">Action sheet</ion-button>
+<ion-content>
 
-  <ion-button (click)="showAlert()">showAlert</ion-button>
-  <ion-button (click)="showConfirm()">showConfirm</ion-button>
-  <ion-button (click)="showPrompt()">showPrompt</ion-button>
-  <ion-button (click)="showActions()">showActions</ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Alert</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="showAlert()">Show</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Confirm</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="showConfirm()">Show</ion-button>
+      <div *ngIf="confirmResult">
+        <h2>Result</h2>
+        <table>
+          <tr>
+            <th>Value</th>
+            <td>{{ confirmResult.value }}</td>
+          </tr>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Prompt</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="showPrompt()">Show</ion-button>
+      <div *ngIf="promptResult">
+        <h2>Result</h2>
+        <table>
+          <tr>
+            <th>Cancelled</th>
+            <td>{{ promptResult.cancelled }}</td>
+          </tr>
+          <tr>
+            <th>Value</th>
+            <td>{{ promptResult.value }}</td>
+          </tr>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Action Sheet</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="showActions()">Show</ion-button>
+      <div *ngIf="actionSheetResult">
+      <h2>Result</h2>
+      <table>
+        <tr>
+          <th>Index</th>
+          <td>{{ actionSheetResult.index }}</td>
+        </tr>
+      </table>
+    </div>
+  </ion-card-content>
+</ion-card>
 
 </ion-content>
