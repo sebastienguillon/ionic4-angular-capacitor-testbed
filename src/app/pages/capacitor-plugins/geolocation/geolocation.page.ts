@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { animate, animation, keyframes, state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { animate, animation, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
 import { CallbackID, GeolocationOptions, GeolocationPosition, Plugins } from '@capacitor/core';
 const { Geolocation } = Plugins;
 

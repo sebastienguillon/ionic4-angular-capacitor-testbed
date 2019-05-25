@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { Plugins, StatusBarStyle } from '@capacitor/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Capacitor, Plugins, StatusBarInfoResult, StatusBarStyle } from '@capacitor/core';
+
+const { StatusBar } = Plugins;
 
 @Component({
   selector: 'app-status-bar',
@@ -8,44 +9,51 @@ import { Plugins, StatusBarStyle } from '@capacitor/core';
   styleUrls: ['./status-bar.page.scss'],
 })
 export class StatusBarPage implements OnInit {
-
-  statusBarStyles = {
-    dark: StatusBarStyle.Dark,
-    light: StatusBarStyle.Light,
-  };
+  statusBarInfo: StatusBarInfoResult;
 
   constructor(
-    private platform: Platform
+    private cdRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
-    if (this.platform.is('mobile')) {
-      console.log('StatusBarStyle.Dark:', StatusBarStyle.Dark);
-      console.log('StatusBarStyle.Light:', StatusBarStyle.Light);
-    }
+    this.getStatusBarInfo();
   }
 
+  private getStatusBarInfo(): void {
+    if (Capacitor.isPluginAvailable('StatusBar')) {
+      StatusBar.getInfo()
+      .then((statusBarInfo: StatusBarInfoResult) => {
+        this.statusBarInfo = statusBarInfo;
+        this.cdRef.detectChanges();
+        console.log('statusBarInfo', statusBarInfo);
+      });
+    }
+  }
   hideStatusBar(): void {
-    if (this.platform.is('mobile')) {
-      Plugins.StatusBar.hide();
+    if (Capacitor.isPluginAvailable('StatusBar')) {
+      StatusBar.hide();
+      this.getStatusBarInfo();
     }
   }
 
   showStatusBar(): void {
-    if (this.platform.is('mobile')) {
-      Plugins.StatusBar.show();
+    if (Capacitor.isPluginAvailable('StatusBar')) {
+      StatusBar.show();
+      this.getStatusBarInfo();
     }
   }
 
   setSatusBarStyle(style: StatusBarStyle): void {
-    if (this.platform.is('mobile')) {
-      Plugins.StatusBar.setStyle({style: style});
+    if (Capacitor.isPluginAvailable('StatusBar')) {
+      StatusBar.setStyle({style: style});
+      this.getStatusBarInfo();
     }
   }
 
   setSatusBarColor(color: string): void {
-    if (this.platform.is('mobile')) {
-      Plugins.StatusBar.setBackgroundColor({color});
+    if (Capacitor.isPluginAvailable('StatusBar')) {
+      StatusBar.setBackgroundColor({color});
+      this.getStatusBarInfo();
     }
   }
 }

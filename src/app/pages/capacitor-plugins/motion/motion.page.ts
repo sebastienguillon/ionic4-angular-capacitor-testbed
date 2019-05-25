@@ -1,5 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Plugins, MotionEventResult } from '@capacitor/core';
+import {
+  MotionEventResult,
+  MotionOrientationEventResult,
+  Plugins,
+  PluginListenerHandle,
+} from '@capacitor/core';
+
+import { from, Subject } from 'rxjs';
+import { throttleTime, map } from 'rxjs/operators';
 
 const { Motion } = Plugins;
 
@@ -9,46 +17,68 @@ const { Motion } = Plugins;
   styleUrls: ['./motion.page.scss'],
 })
 export class MotionPage implements OnInit {
-  lastAcceleration: DeviceAcceleration;
-  motionEvents: MotionEventResult[] = [];
+  private accelListenerHandle: PluginListenerHandle;
+  private orientationListenerHandle: PluginListenerHandle;
+  private accelSub: Subject<MotionEventResult> = new Subject();
+
+  // Used in template (public)
+  motionEvent: MotionEventResult;
+  accelerationEvents: MotionEventResult[] = [];
+  listeningToAcceleration = false;
+  listeningToOrientation = false;
 
   constructor(
     private cdRef: ChangeDetectorRef
-  ) {
-    this.cdRef.detach();
-    setInterval(() => {
-      if (this.cdRef) {
-        this.cdRef.detectChanges();
-      }
-    }, 200);
-  }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   startAccelerationListening(): void {
-    Motion.addListener('accel', this.motionListener.bind(this));
+    this.listeningToAcceleration = true;
+    this.accelListenerHandle = Motion.addListener('accel', this.accelListener.bind(this));
+    this.accelSub.pipe(
+      throttleTime(100))
+      .subscribe((motionEventResult: MotionEventResult) => {
+        this.motionEvent = motionEventResult;
+        this.cdRef.detectChanges();
+      }
+    );
   }
 
   stopAccelerationListening(): void {
-    // Motion.removeListener('accel', this.motionListener);
+    if (this.accelListenerHandle) {
+      this.accelListenerHandle.remove();
+    }
+    if (this.accelSub) {
+      this.accelSub.unsubscribe();
+    }
+    this.listeningToAcceleration = false;
   }
 
-  private motionListener(motionEvent: MotionEventResult): void {
-    this.lastAcceleration = motionEvent.acceleration;
-    this.motionEvents.push(motionEvent);
-    console.log('count:', this.motionEvents.length);
+  private accelListener(event: MotionEventResult): void {
+    this.accelSub.next(event);
+    this.accelerationEvents.push(event);
   }
 
   startOrientationListening(): void {
-
+    this.listeningToOrientation = true;
+    this.orientationListenerHandle = Motion.addListener('orientation', this.orientationListener.bind(this));
   }
 
   stopOrientationListening(): void {
+    if (this.orientationListenerHandle) {
+      this.orientationListenerHandle.remove();
+    }
+    this.listeningToOrientation = false;
+  }
 
+  private orientationListener(event: MotionOrientationEventResult): void {
+    // this.motionEvents.push(motionEvent);
+    // console.log('count:', this.motionEvents.length);
   }
 
   ionViewWillLeave() {
     this.stopAccelerationListening();
+    this.stopOrientationListening();
   }
 }

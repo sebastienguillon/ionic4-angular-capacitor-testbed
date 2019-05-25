@@ -7,16 +7,50 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Info</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item lines="none" no-padding>
+          <ion-label>Visible</ion-label>
+          <ion-note slot="end" color="primary" mode="ios">{{ statusBarInfo?.visible }}</ion-note>
+        </ion-item>
+        <ion-item lines="none" no-padding>
+          <ion-label>Style</ion-label>
+          <ion-note slot="end" color="primary" mode="ios">{{ statusBarInfo?.style }}</ion-note>
+        </ion-item>
+        <ion-item lines="none" no-padding>
+          <ion-label>Color</ion-label>
+          <ion-note slot="end" color="primary" mode="ios">{{ statusBarInfo?.color }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-  <ion-button (click)="hideStatusBar()">Hide StatusBar</ion-button>
-  <ion-button (click)="showStatusBar()">Show StatusBar</ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>iOS & Android</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="hideStatusBar()">Hide StatusBar</ion-button>
+      <ion-button (click)="showStatusBar()">Show StatusBar</ion-button>
+      <ion-button (click)="setSatusBarStyle('DARK')">Set Dark style</ion-button>
+      <ion-button (click)="setSatusBarStyle('LIGHT')">Set Light style</ion-button>
+    </ion-card-content>
+  </ion-card>
 
-  <ion-button (click)="setSatusBarStyle(statusBarStyles.dark)">Set Dark style</ion-button>
-  <ion-button (click)="setSatusBarStyle(statusBarStyles.light)">Set Light style</ion-button>
-
-  <ion-button (click)="setSatusBarColor('#ff0000')">Make StatusBar Red</ion-button>
-  <ion-button (click)="setSatusBarColor('#00ff00')">Make StatusBar Green</ion-button>
-  <ion-button (click)="setSatusBarColor('#0000ff')">Make StatusBar Blue</ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Android only</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="setSatusBarColor('#ff0000')">Make StatusBar Red</ion-button>
+      <ion-button (click)="setSatusBarColor('#00ff00')">Make StatusBar Green</ion-button>
+      <ion-button (click)="setSatusBarColor('#0000ff')">Make StatusBar Blue</ion-button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

@@ -12,3 +12,23 @@
 
 // Load all styles targetting Ionic components.
 @import './theme/ionic/ionic.scss';
+
+ion-card {
+  .card-content-md,
+  .card-content-ios {
+    h2 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+}
+ion-card-content {
+  ion-card-title {
+    margin-top: 1rem;
+  }
+  ion-item {
+    --ion-background-color: transparent;
+  }
+}
