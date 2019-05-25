@@ -24,10 +24,6 @@ const routes: Routes = [
             loadChildren: '../pages/ionic/ionic.module#IonicPageModule',
           },
           {
-            path: 'sticky',
-            loadChildren: '../pages/ionic/sticky/sticky.module#StickyPageModule',
-          },
-          {
             path: 'sticky-property',
             loadChildren: '../pages/ionic/sticky-property/sticky-property.module#StickyPropertyPageModule',
           },
@@ -47,10 +43,6 @@ const routes: Routes = [
           {
             path: 'calendar',
             loadChildren: '../pages/angular/calendar/calendar.module#CalendarPageModule',
-          },
-          {
-            path: 'toggle-switch',
-            loadChildren: '../pages/angular/toggle-switch-demo/toggle-switch-demo.module#ToggleSwitchDemoPageModule',
           },
           {
             path: 'animations',

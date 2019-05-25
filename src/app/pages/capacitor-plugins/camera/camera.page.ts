@@ -2,13 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 
+const { Camera } = Plugins;
+
+/**
+ * https://capacitor.ionicframework.com/docs/guides/ionic-framework-app/
+ */
+
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.page.html',
   styleUrls: ['./camera.page.scss'],
 })
 export class CameraPage implements OnInit {
-  image: SafeResourceUrl;
+  photo: SafeResourceUrl;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -18,16 +24,14 @@ export class CameraPage implements OnInit {
   }
 
   async takePicture() {
-    const { Camera } = Plugins;
-    const image = await Camera.getPhoto({
-      quality: 90,
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
       allowEditing: false,
-      resultType: CameraResultType.Base64,
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera
     });
 
-    // Example of using the Base64 return type. It's recommended to use CameraResultType.Uri
-    // instead for performance reasons when showing large, or a large amount of images.
-    this.image = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.base64String));
+    this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
   }
+
 }

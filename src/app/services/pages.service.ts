@@ -27,13 +27,13 @@ const cordovaCategory: PageCategory = {
 export class PagesService {
   capacitorPages: PageLink[] = [
     {
-      path: '/tabs/capacitor/status-bar',
-      text: 'Status Bar',
+      path: '/tabs/capacitor/camera',
+      text: 'Camera',
       pageCategory: capacitorCategory,
     },
     {
-      path: '/tabs/capacitor/motion',
-      text: 'Motion',
+      path: '/tabs/capacitor/geolocation',
+      text: 'Geolocation',
       pageCategory: capacitorCategory,
     },
     {
@@ -42,18 +42,13 @@ export class PagesService {
       pageCategory: capacitorCategory,
     },
     {
-      path: '/tabs/capacitor/camera',
-      text: 'Camera',
+      path: '/tabs/capacitor/motion',
+      text: 'Motion',
       pageCategory: capacitorCategory,
     },
     {
-      path: '/tabs/capacitor/keyboard',
-      text: 'Keyboard',
-      pageCategory: capacitorCategory,
-    },
-    {
-      path: '/tabs/capacitor/geolocation',
-      text: 'Geolocation',
+      path: '/tabs/capacitor/status-bar',
+      text: 'Status Bar',
       pageCategory: capacitorCategory,
     },
   ];
@@ -70,11 +65,6 @@ export class PagesService {
     {
       path: '/tabs/ionic/ion-modal',
       text: 'ion-modal',
-      pageCategory: ionicCategory,
-    },
-    {
-      path: '/tabs/ionic/sticky',
-      text: 'CSS position: sticky',
       pageCategory: ionicCategory,
     },
     {
@@ -101,11 +91,6 @@ export class PagesService {
     {
       path: '/tabs/angular/calendar',
       text: 'Calendar',
-      pageCategory: angularCategory,
-    },
-    {
-      path: '/tabs/angular/toggle-switch',
-      text: 'Toggle Switch',
       pageCategory: angularCategory,
     },
     {
