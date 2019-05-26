@@ -13,26 +13,31 @@
       <ion-card-title>Acceleration</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <div class="data-container">
+        <ng-container *ngIf="motionEvent">
+          <h2>Acceleration</h2>
+          <div>x: {{ motionEvent.acceleration.x }}</div>
+          <div>y: {{ motionEvent.acceleration.y }}</div>
+          <div>z: {{ motionEvent.acceleration.z }}</div>
 
-      <ng-container *ngIf="motionEvent">
-        <h2>Acceleration</h2>
-        <div>x: {{ motionEvent.acceleration.x }}</div>
-        <div>y: {{ motionEvent.acceleration.y }}</div>
-        <div>z: {{ motionEvent.acceleration.z }}</div>
+          <h2>Acceleration Including Gravity</h2>
+          <div>x: {{ motionEvent.accelerationIncludingGravity.x }}</div>
+          <div>y: {{ motionEvent.accelerationIncludingGravity.y }}</div>
+          <div>z: {{ motionEvent.accelerationIncludingGravity.z }}</div>
 
-        <h2>Acceleration Including Gravity</h2>
-        <div>x: {{ motionEvent.accelerationIncludingGravity.x }}</div>
-        <div>y: {{ motionEvent.accelerationIncludingGravity.y }}</div>
-        <div>z: {{ motionEvent.accelerationIncludingGravity.z }}</div>
+          <h2>Rotation Rate</h2>
+          <div>alpha: {{ motionEvent.rotationRate.alpha }}</div>
+          <div>beta: {{ motionEvent.rotationRate.beta }}</div>
+          <div>gamma: {{ motionEvent.rotationRate.gamma }}</div>
 
-        <h2>Rotation Rate</h2>
-        <div>x: {{ motionEvent.rotationRate.alpha }}</div>
-        <div>y: {{ motionEvent.rotationRate.beta }}</div>
-        <div>z: {{ motionEvent.rotationRate.gamma }}</div>
+          <h2>Interval</h2>
+          <div>x: {{ motionEvent.interval }}</div>
+        </ng-container>
+        <ng-container *ngIf="!motionEvent">
+          <em>no data</em>
+        </ng-container>
+      </div>
 
-        <h2>Interval</h2>
-        <div>x: {{ motionEvent.interval }}</div>
-      </ng-container>
       <ion-button (click)="startAccelerationListening()" *ngIf="!listeningToAcceleration" expand="block">Start listening to acceleration</ion-button>
       <ion-button (click)="stopAccelerationListening()" *ngIf="listeningToAcceleration" expand="block" color="danger">Stop listening to acceleration</ion-button>
     </ion-card-content>
@@ -43,6 +48,18 @@
       <ion-card-title>Orientation</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <div class="data-container">
+        <ng-container *ngIf="motionOrientationEvent">
+          <h2>Motion Orientation</h2>
+          <div>alpha: {{ motionOrientationEvent.alpha }}</div>
+          <div>beta: {{ motionOrientationEvent.beta }}</div>
+          <div>gamma: {{ motionOrientationEvent.gamma }}</div>
+        </ng-container>
+        <ng-container *ngIf="!motionOrientationEvent">
+          <em>no data</em>
+        </ng-container>
+      </div>
+
       <ion-button (click)="startOrientationListening()" *ngIf="!listeningToOrientation" expand="block">Start monitoring orientation</ion-button>
       <ion-button (click)="stopOrientationListening()" *ngIf="listeningToOrientation" expand="block" color="danger">Stop monitoring orientation</ion-button>
     </ion-card-content>

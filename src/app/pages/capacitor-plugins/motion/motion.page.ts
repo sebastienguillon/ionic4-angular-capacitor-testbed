@@ -6,7 +6,7 @@ import {
   PluginListenerHandle,
 } from '@capacitor/core';
 
-import { from, Subject } from 'rxjs';
+import { from, Subject, Subscription } from 'rxjs';
 import { throttleTime, map } from 'rxjs/operators';
 
 const { Motion } = Plugins;
@@ -19,12 +19,14 @@ const { Motion } = Plugins;
 export class MotionPage implements OnInit {
   private accelListenerHandle: PluginListenerHandle;
   private orientationListenerHandle: PluginListenerHandle;
-  private accelSub: Subject<MotionEventResult> = new Subject();
+  private accelSubject: Subject<MotionEventResult> = new Subject();
+  private accelSubscription: Subscription;
 
   // Used in template (public)
   motionEvent: MotionEventResult;
   accelerationEvents: MotionEventResult[] = [];
   listeningToAcceleration = false;
+  motionOrientationEvent: MotionOrientationEventResult;
   listeningToOrientation = false;
 
   constructor(
@@ -34,11 +36,13 @@ export class MotionPage implements OnInit {
   ngOnInit() {}
 
   startAccelerationListening(): void {
+    console.log('MotionPage.startAccelerationListening()');
     this.listeningToAcceleration = true;
     this.accelListenerHandle = Motion.addListener('accel', this.accelListener.bind(this));
-    this.accelSub.pipe(
+    this.accelSubscription = this.accelSubject.pipe(
       throttleTime(100))
       .subscribe((motionEventResult: MotionEventResult) => {
+        console.log('motionEventResult:', motionEventResult);
         this.motionEvent = motionEventResult;
         this.cdRef.detectChanges();
       }
@@ -46,23 +50,33 @@ export class MotionPage implements OnInit {
   }
 
   stopAccelerationListening(): void {
+    console.log('MotionPage.stopAccelerationListening()');
     if (this.accelListenerHandle) {
+      console.log('removing');
       this.accelListenerHandle.remove();
+      console.log('removed');
     }
-    if (this.accelSub) {
-      this.accelSub.unsubscribe();
+    if (this.accelSubscription) {
+      console.log('this.accelSubscription');
+      this.accelSubscription.unsubscribe();
+      console.log('After unsubscribe()');
     }
     this.listeningToAcceleration = false;
   }
 
   private accelListener(event: MotionEventResult): void {
-    this.accelSub.next(event);
+    this.accelSubject.next(event);
     this.accelerationEvents.push(event);
   }
 
   startOrientationListening(): void {
+    console.log('MotionPage.startOrientationListening()');
     this.listeningToOrientation = true;
-    this.orientationListenerHandle = Motion.addListener('orientation', this.orientationListener.bind(this));
+    this.orientationListenerHandle = Motion.addListener('orientation', (event: MotionOrientationEventResult) => {
+      console.log('event:', event);
+      this.motionOrientationEvent = event;
+      this.cdRef.detectChanges();
+    });
   }
 
   stopOrientationListening(): void {
@@ -70,11 +84,6 @@ export class MotionPage implements OnInit {
       this.orientationListenerHandle.remove();
     }
     this.listeningToOrientation = false;
-  }
-
-  private orientationListener(event: MotionOrientationEventResult): void {
-    // this.motionEvents.push(motionEvent);
-    // console.log('count:', this.motionEvents.length);
   }
 
   ionViewWillLeave() {
