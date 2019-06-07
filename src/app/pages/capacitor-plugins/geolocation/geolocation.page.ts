@@ -1,7 +1,9 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { animate, animation, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
 import { CallbackID, GeolocationOptions, GeolocationPosition, Plugins } from '@capacitor/core';
-const { Geolocation } = Plugins;
+
+// Capacitor Plugins.
+const { Geolocation, Storage, Toast } = Plugins;
 
 import { ModalController } from '@ionic/angular';
 import { GeolocationSettingsPage } from './modals/geolocation-settings/geolocation-settings.page';
@@ -76,7 +78,20 @@ export class GeolocationPage implements OnInit {
 
   ngOnInit() {
     console.log('GeolocationPage.ngOnInit()');
-    this.resetGeolocationOptions();
+    Storage.get({ key: 'geolocationOptions' })
+    .then(data => {
+      console.log('Got Storage value for key geolocationOptions:', data);
+      if (data.value === null) {
+        this.resetGeolocationOptions();
+      } else {
+        this.geolocationOptions = JSON.parse(data.value);
+      }
+    })
+    .catch(err => {
+      console.error('Unable to get Storage value for key geolocationOptions:', err);
+    });
+
+
   }
 
   resetGeolocationOptions(): void {
@@ -194,6 +209,25 @@ export class GeolocationPage implements OnInit {
 
     const { data } = await modal.onDidDismiss();
     console.log( 'modal data:', data );
-
+    if (data) {
+      this.geolocationOptions = data;
+      console.log('apply');
+      Storage.set({
+        key: 'geolocationOptions',
+        value: JSON.stringify(this.geolocationOptions),
+      })
+      .then(() => {
+        console.log('Storage: geolocationOptions saved');
+        Toast.show({
+          duration: 'short',
+          text: 'Geolocation options saved',
+        });
+      })
+      .catch(err => {
+        console.error('Storage: failed to save geolocationOptions');
+      });
+    } else {
+      console.log('Do not apply');
+    }
   }
 }

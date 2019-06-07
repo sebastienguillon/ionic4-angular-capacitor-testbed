@@ -15,6 +15,7 @@
 
 <ion-content>
   <ion-card>
+    <ion-progress-bar type="indeterminate" color="success" *ngIf="waitingForCurrentGeolocation"></ion-progress-bar>
     <ion-card-header>
       <ion-card-title>Current</ion-card-title>
     </ion-card-header>
@@ -25,9 +26,6 @@
         Get Current Position
       </ion-button>
     </ion-card-content>
-    <div *ngIf="waitingForCurrentGeolocation" class="overlay">
-      <ion-spinner color="primary"></ion-spinner>
-    </div>
   </ion-card>
 
   <ion-card>
