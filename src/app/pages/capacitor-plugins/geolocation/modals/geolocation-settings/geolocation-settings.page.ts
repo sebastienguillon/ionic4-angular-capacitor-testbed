@@ -36,11 +36,13 @@ export class GeolocationSettingsPage implements OnInit {
   saveSettings() {
     console.log('Saving...');
     console.log(this.settingsForm.value);
+    if (this.settingsForm.valid) {
+      this.modalController.dismiss(this.settingsForm.value);
+    }
+    console.log(this.settingsForm.valid);
   }
 
-  close() {
-    this.modalController.dismiss({
-      foo: 'bar'
-    });
+  close(data = null) {
+    this.modalController.dismiss(data);
   }
 }
