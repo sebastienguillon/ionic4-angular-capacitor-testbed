@@ -10,13 +10,27 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>State: {{ flashingState }}</ion-card-title>
+      <ion-card-title>Slide in/out</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="toggleBottomCard(1)">Card 1</ion-button>
+      <ion-button (click)="toggleBottomCard(2)">Card 2</ion-button>
+      <ion-button (click)="toggleBottomCard(3)">Card 3</ion-button>
+      <ion-button (click)="toggleCard()">toggleCard</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Flash {{ flashingState }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <div class="animation-demo" [@flashing]="flashingState"></div>
-      <ion-button (click)="toggleFlashingState()">toggleFlashingState()</ion-button>
-      <ion-button (click)="startFlashingInterval()" *ngIf="!flashIntervalRunning">startFlashingInterval()</ion-button>
-      <ion-button (click)="stopFlashingInterval()" *ngIf="flashIntervalRunning" color="success">stopFlashingInterval()</ion-button>
+      <ion-button (click)="toggleFlashingState()" [disabled]="flashIntervalRunning">Flash once</ion-button>
+      <ion-button (click)="startFlashingInterval()" *ngIf="!flashIntervalRunning">Flash</ion-button>
+      <ion-button (click)="stopFlashingInterval()" *ngIf="flashIntervalRunning" color="success">Stop Flashing</ion-button>
     </ion-card-content>
   </ion-card>
+
+  <app-slide-in-card #slideInCard></app-slide-in-card>
 </ion-content>

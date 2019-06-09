@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { animate, animation, keyframes, state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { SlideInCardComponent } from './components/slide-in-card/slide-in-card.component';
 
 const flashAnimation = animation([
   animate(
@@ -22,15 +23,19 @@ const flashAnimation = animation([
             timings: '900ms ease-in-out',
             highlightColor: 'var(--ion-color-warning)',
             backgroundColor: 'transparent',
-          }
+          },
         }))
     ])
   ],
 })
 export class AnimationsPage implements OnInit {
+  @ViewChild('slideInCard') slideInCard: SlideInCardComponent;
+
+  private flashingInterval: any;
+
+  // Used in template
   flashingState = 'off';
   flashIntervalRunning = false;
-  private flashingInterval: any;
 
   constructor() { }
 
@@ -50,5 +55,39 @@ export class AnimationsPage implements OnInit {
   stopFlashingInterval() {
     this.flashIntervalRunning = false;
     clearInterval(this.flashingInterval);
+  }
+
+  toggleBottomCard(cardNumber: number) {
+    const cardContent = {
+      id: 1,
+      image: '',
+      title: '',
+      text: '',
+    };
+    switch (cardNumber) {
+      case 1:
+        cardContent.id = 1;
+        cardContent.image = 'animations',
+        cardContent.title = 'Animations';
+        cardContent.text = '@angular/animations';
+        break;
+      case 2:
+        cardContent.id = 2;
+        cardContent.image = 'router',
+        cardContent.title = 'Router';
+        cardContent.text = '@angular/router';
+        break;
+      case 3:
+        cardContent.id = 3;
+        cardContent.image = 'compiler',
+        cardContent.title = 'Compiler';
+        cardContent.text = '@angular/compiler';
+        break;
+    }
+    this.slideInCard.switchCard(cardContent);
+  }
+
+  toggleCard() {
+    this.slideInCard.toggleState();
   }
 }

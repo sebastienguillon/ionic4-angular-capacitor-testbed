@@ -1,0 +1,13 @@
+<div
+  *ngIf="open"
+  class="slide-in-card"
+  [@slideInOut]="open"
+  (@slideInOut.start)="animationStart($event)"
+  (@slideInOut.done)="animationDone($event)">
+  <img src="{{ 'assets/images/angular-logos/' + card.image + '.svg'}}">
+  <h2>{{ card.title }}</h2>
+  <p>{{ card.text }}</p>
+  <ion-button (click)="close()" color="danger">
+    <ion-icon slot="icon-only" name="close"></ion-icon>
+  </ion-button>
+</div>

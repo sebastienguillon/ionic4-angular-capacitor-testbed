@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { AnimationsPage } from './animations.page';
+import { SlideInCardComponent } from './components/slide-in-card/slide-in-card.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AnimationsPage]
+  declarations: [
+    AnimationsPage,
+    SlideInCardComponent,
+  ],
 })
 export class AnimationsPageModule {}
