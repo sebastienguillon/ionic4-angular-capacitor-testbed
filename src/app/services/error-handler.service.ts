@@ -9,10 +9,10 @@ export class ErrorHandlerService implements ErrorHandler {
 
   handleError(error: any): void {
     console.error(
-      '%c💣💣💣', 'font-size:3em;', `
-
-`,
-      error
+      '%c💣💣💣',
+      'font-size:3em;',
+      `\n`,
+      error,
     );
   }
 
