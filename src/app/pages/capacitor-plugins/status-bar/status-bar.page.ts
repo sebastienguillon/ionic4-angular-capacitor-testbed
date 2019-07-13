@@ -9,7 +9,13 @@ const { StatusBar } = Plugins;
   styleUrls: ['./status-bar.page.scss'],
 })
 export class StatusBarPage implements OnInit {
+
+  // Used in template.
   statusBarInfo: StatusBarInfoResult;
+  statusBarStyles = {
+    dark: StatusBarStyle.Dark,
+    light: StatusBarStyle.Light,
+  };
 
   constructor(
     private cdRef: ChangeDetectorRef,
