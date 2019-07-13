@@ -8,7 +8,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./geolocation-settings.page.scss'],
 })
 export class GeolocationSettingsPage implements OnInit {
-  private settingsForm: FormGroup;
+  // Used in template
+  settingsForm: FormGroup;
 
   // componentProps
   @Input() enableHighAccuracy: boolean;
