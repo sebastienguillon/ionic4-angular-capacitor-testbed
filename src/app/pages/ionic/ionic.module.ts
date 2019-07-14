@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '../../components/components.module';
 import { IonicPage } from './ionic.page';
 
+import { LoggerModule } from '../../common/logger/logger.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +23,12 @@ const routes: Routes = [
     ComponentsModule,
     FormsModule,
     IonicModule,
+    LoggerModule.setup({
+      degugTag: {
+        text: '[*DEBUG*]',
+        style: 'color:#9f0',
+      }
+    }),
     RouterModule.forChild(routes)
   ],
   declarations: [IonicPage]

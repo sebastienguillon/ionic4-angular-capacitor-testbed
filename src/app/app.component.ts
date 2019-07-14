@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { AppState, Capacitor, DeviceInfo, Plugins, StatusBarStyle } from '@capacitor/core';
 
 import { ConfigService } from './services/config.service';
+import { LoggerService } from './common/logger/logger.service';
 
 // export { HelloWorldPlugin } from '../../node_modules/hello-world-capacitor-plugin';
 
@@ -13,11 +14,16 @@ const { App, Device, StatusBar, SplashScreen } = Plugins;
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
   constructor(
     private configService: ConfigService,
     private platform: Platform,
+    private loggerService: LoggerService,
   ) {
     this.initializeApp();
+    this.loggerService.logInfo('Some text message', {a: 2}, ['Hello', 'world!'], false);
+    this.loggerService.debug('Some text message', ['This', 'is', 'nice', '😀']);
+    LoggerService.staticDebug('Lazy !');
   }
 
   initializeApp(): void {

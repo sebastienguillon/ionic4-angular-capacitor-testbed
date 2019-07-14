@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { animate, animation, keyframes, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { SlideInCardComponent } from './components/slide-in-card/slide-in-card.component';
+import { LoggerService } from 'src/app/common/logger/logger.service';
 
 const flashAnimation = animation([
   animate(
@@ -37,9 +38,12 @@ export class AnimationsPage implements OnInit {
   flashingState = 'off';
   flashIntervalRunning = false;
 
-  constructor() { }
+  constructor(
+    private loggerService: LoggerService,
+  ) { }
 
   ngOnInit() {
+    this.loggerService.debug('The standard style in animations?');
   }
 
   toggleFlashingState() {

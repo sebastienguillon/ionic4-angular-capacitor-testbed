@@ -14,6 +14,8 @@ import { AppPreferences } from '@ionic-native/app-preferences/ngx';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { LoggerModule } from './common/logger/logger.module';
+
 /**
  * REMINDER:
  * Since Angular 6, we don't need to add singleton services to app.module.ts's
@@ -28,6 +30,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    LoggerModule.setup({
+      degugTag: {
+        text: '[-DEBUG-]',
+        style: 'color:#f90',
+      }
+    }),
     IonicModule.forRoot(),
     AppRoutingModule,
   ],
