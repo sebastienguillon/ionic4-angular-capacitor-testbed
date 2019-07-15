@@ -5,6 +5,7 @@ import { LoggerService } from './logger.service';
 // export const LoggerConfigService = new InjectionToken<any>('LoggerConfig');
 
 import { LoggerConfigService } from 'src/app/common/tokens';
+import { LoggerConfig } from 'src/app/common/logger/logger.service';
 
 @NgModule({
   declarations: [],
@@ -13,8 +14,10 @@ import { LoggerConfigService } from 'src/app/common/tokens';
   ]
 })
 export class LoggerModule {
-
-  static setup(config: any): ModuleWithProviders {
+  constructor() {
+    console.log('%cLoggerModule.constructor()', 'color:#f0f');
+  }
+  static setup(config: LoggerConfig): ModuleWithProviders {
     return {
       ngModule: LoggerModule,
       providers: [

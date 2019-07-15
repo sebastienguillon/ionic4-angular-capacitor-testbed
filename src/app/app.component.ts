@@ -23,7 +23,6 @@ export class AppComponent {
     this.initializeApp();
     this.loggerService.logInfo('Some text message', {a: 2}, ['Hello', 'world!'], false);
     this.loggerService.debug('Some text message', ['This', 'is', 'nice', '😀']);
-    LoggerService.staticDebug('Lazy !');
   }
 
   initializeApp(): void {

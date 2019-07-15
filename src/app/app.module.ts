@@ -31,10 +31,8 @@ import { LoggerModule } from './common/logger/logger.module';
     BrowserModule,
     BrowserAnimationsModule,
     LoggerModule.setup({
-      degugTag: {
-        text: '[-DEBUG-]',
-        style: 'color:#f90',
-      }
+      debugTag: '[-DEBUG-]',
+      debugStyle: 'color:#f90',
     }),
     IonicModule.forRoot(),
     AppRoutingModule,

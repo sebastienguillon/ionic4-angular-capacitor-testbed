@@ -6,41 +6,45 @@
  * read: https://chromium.googlesource.com/chromium/src.git/+/807ec9550e8a31517966636e6a5b506474ab4ea9
  */
 
+// https://www.freelancermap.com/freelancer-tips/12255-forroot-forchild-angular
+
 import { Injectable, Inject } from '@angular/core';
 
 import { LoggerConfigService } from 'src/app/common/tokens';
+
+/**
+ * Note: keep this interface shallow so that we can safely use Object.assign.
+ */
+export interface LoggerConfig {
+  outputToConsole?: boolean;
+  debugTag?: string;
+  debugStyle?: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService {
-  private outputToConsole = true;
-  private debugTag = {
-    text: '[DEBUG]',
-    style: 'color:#f90',
+  private config: LoggerConfig = {
+    outputToConsole: true,
+    debugTag: '[DEBUG]',
+    debugStyle: 'color:#fff',
   };
-  private logPrefix = '';
 
   constructor(
-    @Inject(LoggerConfigService) private loggerConfig,
+    @Inject(LoggerConfigService) providedConfig: LoggerConfig,
   ) {
-    this.debugTag = loggerConfig.degugTag;
+    console.log('LoggerService.constructor()');
+    this.applyConfig(providedConfig);
   }
 
-  init() {
-    return {
-      logInfo: (...args: any[]): () => void => {
-        this.logToServer(...args);
-        if (this.outputToConsole) {
-          args.unshift('color:#09f');
-          args.unshift('%c[INFO]');
-          return console.log.bind(console, ...args);
-        } else {
-          return this.noop;
-        }
-      },
-      debug: console.log.bind(console),
-    };
+  applyConfig(config: LoggerConfig) {
+    console.log('providedConfig', config);
+    console.log('this.config BEFORE', JSON.stringify(this.config));
+    Object.assign(this.config, config);
+    console.log('this.config AFTER', JSON.stringify(this.config));
+    // this.config.outputToConsole = 'outputToConsole' in this.loggerConfig ? this.loggerConfig.outputToConsole : true;
+    // this.config.debugTag = this.loggerConfig.debugTag;
   }
 
   /**
@@ -50,7 +54,7 @@ export class LoggerService {
    */
   logInfo(...args: any[]): () => void {
     this.logToServer(...args);
-    if (this.outputToConsole) {
+    if (this.config.outputToConsole) {
       args.unshift('color:#09f');
       args.unshift('%c[INFO]');
       return console.log.bind(console, ...args);
@@ -59,12 +63,12 @@ export class LoggerService {
     }
   }
 
-  get debug() {
-    return console.log.bind(console, `%c${this.debugTag.text}`, this.debugTag.style);
-  }
-
-  static get staticDebug() {
-    return console.log.bind(console, '%c[DEBUG]', 'color:#fff');
+  get debug(): (...args: any[]) => void {
+    if (this.config.outputToConsole) {
+      return console.log.bind(console, `%c${this.config.debugTag}`, this.config.debugStyle);
+    } else {
+      return this.noop;
+    }
   }
 
   logToServer(...args: any[]) {
